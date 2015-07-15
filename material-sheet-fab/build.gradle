@@ -24,18 +24,6 @@ ext {
     allLicenses = ["MIT"]
 }
 
-buildscript {
-    repositories {
-        // Needed by CircularReveal dependency
-        maven { url 'https://jitpack.io' }
-    }
-}
-
-repositories {
-    // Needed by CircularReveal dependency
-    maven { url 'https://jitpack.io' }
-}
-
 android {
     compileSdkVersion 22
     buildToolsVersion "22.0.1"
@@ -53,7 +41,6 @@ android {
 }
 
 dependencies {
-    compile 'com.github.ozodrukh:CircularReveal:1.1.1@aar'
     compile 'com.github.asyl.animation:arcanimator:1.0.0'
 }
 

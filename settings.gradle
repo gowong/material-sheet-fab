@@ -1,1 +1,2 @@
-include ':sample', ':lib'
+include ':material-sheet-fab'
+include ':sample'
