@@ -1,14 +1,13 @@
 # MaterialSheetFab
-Library that implements the floating action button to sheet [transition](https://www.google.com/design/spec/components/buttons-floating-action-button.html#buttons-floating-action-button-transitions) from Google's Material Design documentation. Works on Android 4.0+ (API levels >= 14).  
+[![Maven Central](https://img.shields.io/maven-central/v/com.gordonwong/material-sheet-fab.svg)](https://oss.sonatype.org/content/repositories/releases/com/gordonwong/material-sheet-fab/)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/gowong/material-sheet-fab/master/LICENSE)
 
-<a href="https://play.google.com/store/apps/details?id=TODO">
-  <img alt="Get it on Google Play"
-       src="https://developer.android.com/images/brand/en_generic_rgb_wo_60.png" />
-</a>
-TODO: GIFs here
+Library that implements the floating action button to sheet [transition](https://www.google.com/design/spec/components/buttons-floating-action-button.html#buttons-floating-action-button-transitions) from Google's Material Design documentation. It can be used with any FAB library on Android 4.0+ (API levels >= 14).  
+
+![Transition](art/bgmonitor.gif)
 
 ## Installation
-Add the dependency to your `build.gradle`:  
+Add the dependency (available from mavenCentral and jcenter) to your `build.gradle`:  
 ```groovy
 compile 'com.gordonwong:material-sheet-fab:1.0.0'
 ```
@@ -43,8 +42,8 @@ compile 'com.gordonwong:material-sheet-fab:1.0.0'
         <!-- Sheet that contains your items -->
         <android.support.v7.widget.CardView
             android:id="@+id/fab_sheet"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_width="250dp"
+            android:layout_height="300dp">
             
             <!-- Put your sheet items here -->
             
@@ -54,7 +53,7 @@ compile 'com.gordonwong:material-sheet-fab:1.0.0'
 ```
 
 ### Implement the FAB:  
-You can use any FAB library or view as long as it implements the `AnimatedFab` interface.  
+You can use any FAB library as long as it implements the `AnimatedFab` interface.  
 ```java
 import android.support.design.widget.FloatingActionButton;
 
@@ -65,7 +64,7 @@ public class Fab extends FloatingActionButton implements AnimatedFab {
     */
     @Override
     public void show() {
-        // Animate the FAB into view or simply set it's visibility
+        // Animate the FAB into view or simply set its visibility
     }
 
     /**
@@ -85,13 +84,13 @@ public class Fab extends FloatingActionButton implements AnimatedFab {
      */
     @Override
     public void hide() {
-        // Animate the FAB out of view or simply set it's visibility
+        // Animate the FAB out of view or simply set its visibility
     }
 }
 ```
 
 ### Initialize the material sheet FAB:  
-This can be done from an Activity or Fragment.  
+This can be done from your Activity or Fragment.  
 ```java
 public class MaterialSheetFabActivity extends Activity {
 
@@ -145,9 +144,14 @@ materialSheetFab.showFab(translationX, translationY);
 ```
 
 
-## Examples
+## Sample
+<a href="https://play.google.com/store/apps/details?id=com.gordonwong.materialsheetfab">
+  <img alt="Get it on Google Play"
+       src="https://developer.android.com/images/brand/en_generic_rgb_wo_60.png" />
+</a>
+
 TODO sample app screenshot  
-See code from the [sample app](./sample/) or try it out [here](TODO).
+Take a look at the [sample code](./sample/) and try the [app](https://play.google.com/store/apps/details?id=com.gordonwong.materialsheetfab).
 
 ## Changelog
 See changelog [here](./CHANGELOG.md).
