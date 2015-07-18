@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="theme_primary">#00BCD4</color>
+    <color name="theme_primary_dark">#0097A7</color>
+    <color name="theme_primary_dark2">#006064</color>
+    <color name="theme_accent">#FFEB3B</color>
+
+    <color name="background_card">#fff</color>
+
+    <color name="text_black_87">#de000000</color>
+
+</resources>
