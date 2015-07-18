@@ -85,6 +85,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		// Setup tab layout
 		TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
 		tabLayout.setupWithViewPager(viewpager);
+		viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+			@Override
+			public void onPageScrolled(int i, float v, int i1) {
+			}
+
+			@Override
+			public void onPageSelected(int i) {
+				updateFab(i);
+			}
+
+			@Override
+			public void onPageScrollStateChanged(int i) {
+			}
+		});
 	}
 
 	/**
@@ -123,6 +137,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		findViewById(R.id.fab_sheet_item_reminder).setOnClickListener(this);
 		findViewById(R.id.fab_sheet_item_photo).setOnClickListener(this);
 		findViewById(R.id.fab_sheet_item_note).setOnClickListener(this);
+	}
+
+	/**
+	 * Updates the FAB based on the selected tab
+	 * 
+	 * @param selectedTab selected tab
+	 */
+	private void updateFab(int selectedTab) {
+		switch (selectedTab) {
+		case MainPagerAdapter.ALL_POS:
+			materialSheetFab.showFab();
+			break;
+		case MainPagerAdapter.SHARED_POS:
+			materialSheetFab.showFab(0,
+					-getResources().getDimensionPixelSize(R.dimen.snackbar_height));
+			break;
+		case MainPagerAdapter.FAVORITES_POS:
+		default:
+			materialSheetFab.hideSheetThenFab();
+			break;
+		}
 	}
 
 	/**
