@@ -7,6 +7,7 @@
     <color name="theme_accent">#FFEB3B</color>
 
     <color name="background_card">#fff</color>
+    <color name="background_snackbar">#323232</color>
 
     <color name="text_black_87">#de000000</color>
     <color name="text_white_87">#deFFFFFF</color>

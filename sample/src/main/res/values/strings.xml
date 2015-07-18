@@ -14,5 +14,7 @@
     <string name="search">Search</string>
     <string name="shared">Shared</string>
     <string name="sheet_item_pressed">Item pressed</string>
+    <string name="snackbar_shared_msg">Gordon Wong shared a note with you.</string>
+    <string name="view">View</string>
 
 </resources>

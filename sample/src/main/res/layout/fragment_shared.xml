@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-</LinearLayout>
+    <!-- Snackbar -->
+    <LinearLayout
+        style="@style/Widget.MaterialSheetFab.Snackbar"
+        android:layout_alignParentBottom="true">
+
+        <TextView
+            style="@style/TextAppearance.MaterialSheetFab.Snackbar.Message"
+            android:text="@string/snackbar_shared_msg" />
+
+        <TextView
+            style="@style/TextAppearance.MaterialSheetFab.Snackbar.Action"
+            android:text="@string/view" />
+
+    </LinearLayout>
+</RelativeLayout>

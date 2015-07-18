@@ -67,4 +67,34 @@
         <item name="android:drawablePadding">@dimen/sheet_item_image_spacing</item>
     </style>
 
+    <style name="Widget.MaterialSheetFab.Snackbar" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/snackbar_height</item>
+        <item name="android:paddingLeft">@dimen/snackbar_spacing</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:background">@color/background_snackbar</item>
+    </style>
+
+    <style name="TextAppearance.MaterialSheetFab.Snackbar.Message" parent="">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textColor">@color/text_white_87</item>
+        <item name="android:textSize">@dimen/snackbar_textsize</item>
+    </style>
+
+    <style name="TextAppearance.MaterialSheetFab.Snackbar.Action" parent="">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:paddingLeft">@dimen/snackbar_spacing</item>
+        <item name="android:paddingRight">@dimen/snackbar_spacing</item>
+        <item name="android:gravity">center</item>
+        <item name="android:clickable">true</item>
+        <item name="android:background">?selectableItemBackgroundBorderless</item>
+        <item name="android:textColor">@color/theme_accent</item>
+        <item name="android:textSize">@dimen/snackbar_textsize</item>
+        <item name="android:textAllCaps">true</item>
+    </style>
+
 </resources>
