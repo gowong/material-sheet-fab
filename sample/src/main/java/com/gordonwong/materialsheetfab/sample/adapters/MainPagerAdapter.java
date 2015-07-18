@@ -1,10 +1,11 @@
-package com.gordonwong.materialsheetfab.sample;
+package com.gordonwong.materialsheetfab.sample.adapters;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.gordonwong.materialsheetfab.sample.R;
 import com.gordonwong.materialsheetfab.sample.fragments.AllFragment;
 import com.gordonwong.materialsheetfab.sample.fragments.FavoritesFragment;
 import com.gordonwong.materialsheetfab.sample.fragments.SharedFragment;

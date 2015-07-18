@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.gordonwong.materialsheetfab.MaterialSheetFab;
 import com.gordonwong.materialsheetfab.MaterialSheetFabEventListener;
+import com.gordonwong.materialsheetfab.sample.adapters.MainPagerAdapter;
 
 /**
  * Created by Gordon Wong on 7/17/2015.
