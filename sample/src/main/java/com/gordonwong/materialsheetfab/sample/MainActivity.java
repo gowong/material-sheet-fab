@@ -82,14 +82,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		ViewPager viewpager = (ViewPager) findViewById(R.id.viewpager);
 		viewpager.setAdapter(new MainPagerAdapter(this, getSupportFragmentManager()));
 
-		// Add tabs
-		TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
-		tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.all)));
-		tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.favorites)));
-
 		// Setup tab layout
+		TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
 		tabLayout.setupWithViewPager(viewpager);
-		viewpager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 	}
 
 	/**
