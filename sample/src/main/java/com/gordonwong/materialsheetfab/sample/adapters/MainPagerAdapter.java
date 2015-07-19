@@ -17,7 +17,7 @@ import com.gordonwong.materialsheetfab.sample.fragments.SharedFragment;
  */
 public class MainPagerAdapter extends FragmentPagerAdapter {
 
-	private static final int NUM_ITEMS = 3;
+	public static final int NUM_ITEMS = 3;
 	public static final int ALL_POS = 0;
 	public static final int SHARED_POS = 1;
 	public static final int FAVORITES_POS = 2;
