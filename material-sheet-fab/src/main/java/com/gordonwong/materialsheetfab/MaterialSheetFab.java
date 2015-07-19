@@ -24,12 +24,14 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 	// interpolators used)
 	private static final boolean IS_LOLLIPOP = Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP;
 
+	private static final int ANIMATION_SPEED = 1;
+
 	// Animation durations
-	private static final int SHEET_ANIM_DURATION = IS_LOLLIPOP ? 600 : 300;
+	private static final int SHEET_ANIM_DURATION = (IS_LOLLIPOP ? 600 : 300) * ANIMATION_SPEED;
 	private static final int SHOW_SHEET_COLOR_ANIM_DURATION = (int) (SHEET_ANIM_DURATION * 0.75);
 	private static final int HIDE_SHEET_COLOR_ANIM_DURATION = IS_LOLLIPOP ? (int) (SHEET_ANIM_DURATION * 1.5)
 			: (SHEET_ANIM_DURATION * 2);
-	private static final int FAB_ANIM_DURATION = 300;
+	private static final int FAB_ANIM_DURATION = 300 * ANIMATION_SPEED;
 	private static final int SHOW_OVERLAY_ANIM_DURATION = MaterialSheetFab.SHOW_SHEET_ANIM_DELAY
 			+ SHEET_ANIM_DURATION;
 	private static final int HIDE_OVERLAY_ANIM_DURATION = SHEET_ANIM_DURATION;
@@ -222,7 +224,7 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 		sheetAnimation.alignSheetWithFab(fab);
 
 		// Morph FAB into sheet
-		float endY = anchorY + fab.getPivotY() - sheetAnimation.getRevealTranslationY();
+		float endY = anchorY - sheetAnimation.getRevealTranslationY();
 		fabAnimation.morphIntoSheet(sheetAnimation.getSheetCenterX(), endY, FAB_ARC_DEGREES,
 				FAB_SCALE_FACTOR, FAB_ANIM_DURATION, null);
 

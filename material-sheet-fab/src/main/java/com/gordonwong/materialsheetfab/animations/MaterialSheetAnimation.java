@@ -7,6 +7,7 @@ import android.animation.ValueAnimator;
 import android.os.Build;
 import android.view.View;
 import android.view.ViewAnimationUtils;
+import android.view.ViewGroup;
 import android.view.animation.Interpolator;
 
 import io.codetail.animation.SupportAnimator;
@@ -17,6 +18,8 @@ import io.codetail.animation.SupportAnimator;
  * Animates the material sheet into and out of view.
  */
 public class MaterialSheetAnimation {
+
+	private static final int SHEET_REVEAL_OFFSET_Y = 5;
 
 	private View sheet;
 	private int sheetColor;
@@ -45,14 +48,16 @@ public class MaterialSheetAnimation {
 		// Get FAB's coordinates
 		int[] fabCoords = new int[2];
 		fab.getLocationOnScreen(fabCoords);
-		int fabRight = fabCoords[0] + fab.getWidth() - fab.getPaddingRight();
-		int fabBottom = fabCoords[1] + fab.getHeight() - fab.getPaddingBottom();
+		int fabRight = fabCoords[0] + fab.getWidth();
+		int fabBottom = fabCoords[1] + fab.getHeight();
 
 		// Get sheet's coordinates
 		int[] sheetCoords = new int[2];
 		sheet.getLocationOnScreen(sheetCoords);
-		int sheetRight = sheetCoords[0] + sheet.getWidth();
-		int sheetBottom = sheetCoords[1] + sheet.getHeight();
+		ViewGroup.MarginLayoutParams sheetLayoutParams = (ViewGroup.MarginLayoutParams) sheet
+				.getLayoutParams();
+		int sheetRight = sheetCoords[0] + sheet.getWidth() + sheetLayoutParams.rightMargin;
+		int sheetBottom = sheetCoords[1] + sheet.getHeight() + sheetLayoutParams.bottomMargin;
 
 		int rightDiff = (sheetRight - fabRight);
 		int bottomDiff = (sheetBottom - fabBottom);
@@ -81,7 +86,7 @@ public class MaterialSheetAnimation {
 	public void morphFromFab(View fab, long showSheetDuration, long showSheetColorDuration,
 			AnimationListener listener) {
 		sheet.setVisibility(View.VISIBLE);
-		revealSheetWithFab(getFabRevealRadius(fab), getSheetRevealRadius(), showSheetDuration,
+		revealSheetWithFab(fab, getFabRevealRadius(fab), getSheetRevealRadius(), showSheetDuration,
 				fabColor, sheetColor, showSheetColorDuration, listener);
 	}
 
@@ -97,12 +102,13 @@ public class MaterialSheetAnimation {
 	 */
 	public void morphIntoFab(View fab, long hideSheetDuration, long hideSheetColorDuration,
 			AnimationListener listener) {
-		revealSheetWithFab(getSheetRevealRadius(), getFabRevealRadius(fab), hideSheetDuration,
+		revealSheetWithFab(fab, getSheetRevealRadius(), getFabRevealRadius(fab), hideSheetDuration,
 				sheetColor, fabColor, hideSheetColorDuration, listener);
 	}
 
-	protected void revealSheetWithFab(float startRadius, float endRadius, long sheetDuration,
-			int startColor, int endColor, long sheetColorDuration, AnimationListener listener) {
+	protected void revealSheetWithFab(View fab, float startRadius, float endRadius,
+			long sheetDuration, int startColor, int endColor, long sheetColorDuration,
+			AnimationListener listener) {
 		if (listener != null) {
 			listener.onStart();
 		}
@@ -112,7 +118,7 @@ public class MaterialSheetAnimation {
 		AnimationListener colorListener = (sheetColorDuration > sheetDuration) ? listener : null;
 
 		// Start animations
-		startCircularRevealAnim(sheet, getSheetRevealCenterX(), getSheetRevealCenterY(),
+		startCircularRevealAnim(sheet, getSheetRevealCenterX(), getSheetRevealCenterY(fab),
 				startRadius, endRadius, sheetDuration, interpolator, revealListener);
 		startColorAnim(sheet, startColor, endColor, sheetColorDuration, interpolator, colorListener);
 	}
@@ -229,15 +235,16 @@ public class MaterialSheetAnimation {
 	 * @return Translation Y value for the reveal sheet animation
 	 */
 	public int getRevealTranslationY() {
-		return sheet.getHeight() / 4;
+		return sheet.getHeight() / SHEET_REVEAL_OFFSET_Y;
 	}
 
 	protected int getSheetRevealCenterX() {
 		return sheet.getWidth() / 2;
 	}
 
-	protected int getSheetRevealCenterY() {
-		return sheet.getHeight() * 3 / 4;
+	protected int getSheetRevealCenterY(View fab) {
+		return (int) ((sheet.getHeight() * (SHEET_REVEAL_OFFSET_Y - 1) / SHEET_REVEAL_OFFSET_Y) - fab
+				.getPivotY());
 	}
 
 	protected float getSheetRevealRadius() {
