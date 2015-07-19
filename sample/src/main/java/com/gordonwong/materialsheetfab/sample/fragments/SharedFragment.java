@@ -1,12 +1,5 @@
 package com.gordonwong.materialsheetfab.sample.fragments;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.gordonwong.materialsheetfab.sample.R;
 
 /**
@@ -14,15 +7,24 @@ import com.gordonwong.materialsheetfab.sample.R;
  *
  * Shared items fragment.
  */
-public class SharedFragment extends Fragment {
+public class SharedFragment extends NotesListFragment {
 
 	public static SharedFragment newInstance() {
 		return new SharedFragment();
 	}
 
-	@Nullable
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		return inflater.inflate(R.layout.fragment_shared, container, false);
+	protected int getLayoutResId() {
+		return R.layout.fragment_shared;
+	}
+
+	@Override
+	protected int getNumColumns() {
+		return 2;
+	}
+
+	@Override
+	protected int getNumItems() {
+		return 10;
 	}
 }

@@ -2,4 +2,5 @@
 <android.support.v7.widget.RecyclerView
     android:id="@+id/notes_list"
     style="@style/Widget.MaterialSheetFab.Note.List"
-    xmlns:android="http://schemas.android.com/apk/res/android" />
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:paddingBottom="@dimen/note_spacing" />

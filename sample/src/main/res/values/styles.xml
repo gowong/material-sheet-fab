@@ -78,6 +78,20 @@
         <item name="android:clipToPadding">false</item>
     </style>
 
+    <style name="Widget.MaterialSheetFab.Note" parent="">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">@dimen/note_spacing</item>
+        <item name="android:foreground">?selectableItemBackground</item>
+        <item name="android:clickable">true</item>
+        <item name="contentPaddingTop">@dimen/note_content_spacing_topbottom</item>
+        <item name="contentPaddingLeft">@dimen/note_content_spacing_leftright</item>
+        <item name="contentPaddingRight">@dimen/note_content_spacing_leftright</item>
+        <item name="contentPaddingBottom">@dimen/note_content_spacing_topbottom</item>
+        <item name="cardBackgroundColor">@color/background_card</item>
+        <item name="cardCornerRadius">@dimen/note_corner_radius</item>
+    </style>
+
     <style name="Widget.MaterialSheetFab.Snackbar" parent="">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/snackbar_height</item>
