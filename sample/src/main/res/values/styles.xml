@@ -68,6 +68,16 @@
         <item name="android:drawablePadding">@dimen/sheet_item_image_spacing</item>
     </style>
 
+    <style name="Widget.MaterialSheetFab.Note.List" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:paddingTop">@dimen/note_spacing</item>
+        <item name="android:paddingLeft">@dimen/note_spacing</item>
+        <item name="android:paddingRight">@dimen/note_spacing</item>
+        <item name="android:paddingBottom">@dimen/fab_list_spacing</item>
+        <item name="android:clipToPadding">false</item>
+    </style>
+
     <style name="Widget.MaterialSheetFab.Snackbar" parent="">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/snackbar_height</item>
