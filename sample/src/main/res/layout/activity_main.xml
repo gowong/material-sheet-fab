@@ -4,8 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -106,6 +105,21 @@
             </android.support.v7.widget.CardView>
 
         </io.codetail.widget.RevealLinearLayout>
+
+        <!-- Snackbar -->
+        <LinearLayout
+            android:id="@+id/snackbar"
+            style="@style/Widget.MaterialSheetFab.Snackbar"
+            android:layout_alignParentBottom="true">
+
+            <TextView
+                style="@style/TextAppearance.MaterialSheetFab.Snackbar.Message"
+                android:text="@string/snackbar_shared_msg" />
+
+            <TextView
+                style="@style/TextAppearance.MaterialSheetFab.Snackbar.Action"
+                android:text="@string/view" />
+        </LinearLayout>
     </RelativeLayout>
 
     <android.support.design.widget.NavigationView

@@ -38,8 +38,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		setContentView(R.layout.activity_main);
 		setupActionBar();
 		setupDrawer();
-		setupTabs();
 		setupFab();
+		setupTabs();
 	}
 
 	@Override
@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		ViewPager viewpager = (ViewPager) findViewById(R.id.viewpager);
 		viewpager.setAdapter(new MainPagerAdapter(this, getSupportFragmentManager()));
 		viewpager.setOffscreenPageLimit(MainPagerAdapter.NUM_ITEMS);
+		updatePage(viewpager.getCurrentItem());
 
 		// Setup tab layout
 		TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
@@ -94,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 			@Override
 			public void onPageSelected(int i) {
-				updateFab(i);
+				updatePage(i);
 			}
 
 			@Override
@@ -142,12 +143,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 	}
 
 	/**
-	 * Updates the FAB based on the selected tab
-	 * 
-	 * @param selectedTab selected tab
+	 * Called when the selected page changes.
+	 *
+	 * @param selectedPage selected page
 	 */
-	private void updateFab(int selectedTab) {
-		switch (selectedTab) {
+	private void updatePage(int selectedPage) {
+		updateFab(selectedPage);
+		updateSnackbar(selectedPage);
+	}
+
+	/**
+	 * Updates the FAB based on the selected page
+	 * 
+	 * @param selectedPage selected page
+	 */
+	private void updateFab(int selectedPage) {
+		switch (selectedPage) {
 		case MainPagerAdapter.ALL_POS:
 			materialSheetFab.showFab();
 			break;
@@ -158,6 +169,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		case MainPagerAdapter.FAVORITES_POS:
 		default:
 			materialSheetFab.hideSheetThenFab();
+			break;
+		}
+	}
+
+	/**
+	 * Updates the snackbar based on the selected page
+	 *
+	 * @param selectedPage selected page
+	 */
+	private void updateSnackbar(int selectedPage) {
+		View snackbar = findViewById(R.id.snackbar);
+		switch (selectedPage) {
+		case MainPagerAdapter.SHARED_POS:
+			snackbar.setVisibility(View.VISIBLE);
+			break;
+		case MainPagerAdapter.ALL_POS:
+		case MainPagerAdapter.FAVORITES_POS:
+		default:
+			snackbar.setVisibility(View.GONE);
 			break;
 		}
 	}
