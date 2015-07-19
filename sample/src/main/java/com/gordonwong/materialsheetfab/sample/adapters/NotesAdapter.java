@@ -7,6 +7,8 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.gordonwong.materialsheetfab.sample.R;
@@ -34,20 +36,32 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
 
 	@Override
 	public void onBindViewHolder(ViewHolder holder, int position) {
-		String title = notes[position].getTitle();
-		String note = notes[position].getNote();
-		String info = notes[position].getInfo();
-		int color = notes[position].getColor();
+		Note noteModel = notes[position];
+		String title = noteModel.getTitle();
+		String note = noteModel.getNote();
+		String info = noteModel.getInfo();
+		int infoImage = noteModel.getInfoImage();
+		int color = noteModel.getColor();
 
 		// Set text
 		holder.titleTextView.setText(title);
 		holder.noteTextView.setText(note);
 		holder.infoTextView.setText(info);
 
+		// Set image
+		holder.infoImageView.setImageResource(infoImage);
+
 		// Set visibilities
 		holder.titleTextView.setVisibility(TextUtils.isEmpty(title) ? View.GONE : View.VISIBLE);
 		holder.noteTextView.setVisibility(TextUtils.isEmpty(note) ? View.GONE : View.VISIBLE);
-		holder.infoTextView.setVisibility(TextUtils.isEmpty(info) ? View.GONE : View.VISIBLE);
+		holder.infoLayout.setVisibility(TextUtils.isEmpty(info) ? View.GONE : View.VISIBLE);
+
+		// Set padding
+		int paddingTop = (holder.titleTextView.getVisibility() != View.VISIBLE) ? 0
+				: holder.itemView.getContext().getResources()
+						.getDimensionPixelSize(R.dimen.note_content_spacing);
+		holder.noteTextView.setPadding(holder.noteTextView.getPaddingLeft(), paddingTop,
+				holder.noteTextView.getPaddingRight(), holder.noteTextView.getPaddingBottom());
 
 		// Set background color
 		((CardView) holder.itemView).setCardBackgroundColor(color);
@@ -70,13 +84,17 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
 
 		public TextView titleTextView;
 		public TextView noteTextView;
+		public LinearLayout infoLayout;
 		public TextView infoTextView;
+		public ImageView infoImageView;
 
 		public ViewHolder(View itemView) {
 			super(itemView);
 			titleTextView = (TextView) itemView.findViewById(R.id.note_title);
 			noteTextView = (TextView) itemView.findViewById(R.id.note_text);
+			infoLayout = (LinearLayout) itemView.findViewById(R.id.note_info_layout);
 			infoTextView = (TextView) itemView.findViewById(R.id.note_info);
+			infoImageView = (ImageView) itemView.findViewById(R.id.note_info_image);
 		}
 	}
 
