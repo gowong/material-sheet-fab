@@ -3,10 +3,11 @@
 
     <dimen name="keyline_spacing">16dp</dimen>
 
-    <dimen name="fab_spacing">@dimen/keyline_spacing</dimen>
+    <dimen name="fab_spacing">0dp</dimen>
     <dimen name="fab_list_spacing">88dp</dimen>
 
     <dimen name="sheet_width">210dp</dimen>
+    <dimen name="sheet_spacing">10dp</dimen>
     <dimen name="sheet_item_spacing">@dimen/keyline_spacing</dimen>
     <dimen name="sheet_item_image_spacing">24dp</dimen>
     <dimen name="sheet_item_textsize">16sp</dimen>
