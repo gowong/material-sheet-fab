@@ -9,7 +9,7 @@ Library that implements the floating action button to sheet [transition](https:/
 ## Installation
 Add the dependency (available from mavenCentral and jcenter) to your `build.gradle`:  
 ```groovy
-compile 'com.gordonwong:material-sheet-fab:1.0.0'
+compile 'com.gordonwong:material-sheet-fab:1.0.1'
 ```
 
 ## Usage
