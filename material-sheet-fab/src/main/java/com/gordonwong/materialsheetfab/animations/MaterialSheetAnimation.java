@@ -4,6 +4,8 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ArgbEvaluator;
 import android.animation.ValueAnimator;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.view.View;
 import android.view.ViewAnimationUtils;
@@ -209,7 +211,12 @@ public class MaterialSheetAnimation {
 			public void onAnimationUpdate(ValueAnimator animator) {
 				// Update background color
 				Integer color = (Integer) animator.getAnimatedValue();
-				view.setBackgroundColor(color);
+				if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+					final Drawable d = view.getBackground();
+					d.setColorFilter(color, PorterDuff.Mode.MULTIPLY);
+				} else {
+					view.setBackgroundColor(color);
+				}
 			}
 		});
 		// Start animation
