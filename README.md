@@ -1,8 +1,9 @@
 # MaterialSheetFab
 [![Maven Central](https://img.shields.io/maven-central/v/com.gordonwong/material-sheet-fab.svg)](https://oss.sonatype.org/content/repositories/releases/com/gordonwong/material-sheet-fab/)
 [![GitHub license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://raw.githubusercontent.com/gowong/material-sheet-fab/master/LICENSE)
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-MaterialSheetFab-blue.svg?style=flat)](https://android-arsenal.com/details/1/2178)
-[![Android Weekly](https://img.shields.io/badge/Android%20Weekly-166-blue.svg?style=flat)](http://androidweekly.net/issues/issue-166)
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-MaterialSheetFab-green.svg?style=flat)](https://android-arsenal.com/details/1/2178)
+[![Android Weekly](https://img.shields.io/badge/Android%20Weekly-166-green.svg?style=flat)](http://androidweekly.net/issues/issue-166)
+
 
 Library that implements the floating action button to sheet [transition](https://www.google.com/design/spec/components/buttons-floating-action-button.html#buttons-floating-action-button-transitions) from Google's Material Design documentation. It can be used with any FAB library on Android 4.0+ (API levels >= 14).  
 
