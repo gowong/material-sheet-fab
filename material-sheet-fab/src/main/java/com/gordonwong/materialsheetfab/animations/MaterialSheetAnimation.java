@@ -1,5 +1,7 @@
 package com.gordonwong.materialsheetfab.animations;
 
+import java.lang.reflect.Method;
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ArgbEvaluator;
@@ -19,12 +21,15 @@ import io.codetail.animation.SupportAnimator;
  */
 public class MaterialSheetAnimation {
 
+	private static final String SUPPORT_CARDVIEW_CLASSNAME = "android.support.v7.widget.CardView";
 	private static final int SHEET_REVEAL_OFFSET_Y = 5;
 
 	private View sheet;
 	private int sheetColor;
 	private int fabColor;
 	private Interpolator interpolator;
+	private Method setCardBackgroundColor;
+	private boolean isSupportCardView;
 
 	public MaterialSheetAnimation(View sheet, int sheetColor, int fabColor,
 			Interpolator interpolator) {
@@ -32,6 +37,18 @@ public class MaterialSheetAnimation {
 		this.sheetColor = sheetColor;
 		this.fabColor = fabColor;
 		this.interpolator = interpolator;
+		isSupportCardView = (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP)
+				&& sheet.getClass().getName().equals(SUPPORT_CARDVIEW_CLASSNAME);
+		// Get setCardBackgroundColor() method
+		if (isSupportCardView) {
+			try {
+				// noinspection unchecked
+				setCardBackgroundColor = sheet.getClass()
+						.getDeclaredMethod("setCardBackgroundColor", int.class);
+			} catch (Exception e) {
+				setCardBackgroundColor = null;
+			}
+		}
 	}
 
 	/**
@@ -209,7 +226,26 @@ public class MaterialSheetAnimation {
 			public void onAnimationUpdate(ValueAnimator animator) {
 				// Update background color
 				Integer color = (Integer) animator.getAnimatedValue();
-				view.setBackgroundColor(color);
+
+				// Use setCardBackgroundColor() to avoid crashes if a CardView is used as a sheet on
+				// Android < 5.0
+				// See https://github.com/gowong/material-sheet-fab/pull/2 and
+				// https://code.google.com/p/android/issues/detail?id=77843
+				if (isSupportCardView) {
+					// Use setCardBackground() method if it is available
+					if (setCardBackgroundColor != null) {
+						try {
+							setCardBackgroundColor.invoke(sheet, color);
+						} catch (Exception e) {
+							// Ignore exceptions since there's no other way set a support CardView's
+							// background color
+						}
+					}
+				}
+				// Set background color for CardView on Android >= 5.0 and all other views
+				else {
+					view.setBackgroundColor(color);
+				}
 			}
 		});
 		// Start animation
