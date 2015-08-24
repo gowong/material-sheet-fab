@@ -2,11 +2,11 @@
 ## Library
 1. Increment `libraryVersion` in `material-sheet-fab/build.gradle` and gradle snippet in `README.md`.
 1. Update changelog.
-1. Fill in `bintray.gpg.password` in `local.properties`
+1. Fill in bintray credentials in `local.properties`
 1. From terminal in Android Studio:
 	1. `gradlew install`
 	1. `gradlew bintrayUpload`
-1. Remove `bintray.gpg.password` from `local.properties`
+1. Remove credentials from `local.properties`
 1. Verify that new version was uploaded to [Bintray](https://bintray.com/gowong/maven/material-sheet-fab/view#files).
 1. Sync to Maven:
 	1. Go to [Bintray](https://bintray.com/gowong/maven/material-sheet-fab/view#central).
