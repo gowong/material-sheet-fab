@@ -137,7 +137,8 @@ public class MaterialSheetAnimation {
 		// Start animations
 		startCircularRevealAnim(sheet, getSheetRevealCenterX(), getSheetRevealCenterY(fab),
 				startRadius, endRadius, sheetDuration, interpolator, revealListener);
-		startColorAnim(sheet, startColor, endColor, sheetColorDuration, interpolator, colorListener);
+		startColorAnim(sheet, startColor, endColor, sheetColorDuration, interpolator,
+				colorListener);
 	}
 
 	protected void startCircularRevealAnim(View view, int centerX, int centerY, float startRadius,
@@ -174,8 +175,8 @@ public class MaterialSheetAnimation {
 			centerX += view.getX();
 			centerY += view.getY();
 			// Setup animation
-			SupportAnimator anim = io.codetail.animation.ViewAnimationUtils.createCircularReveal(
-					view, centerX, centerY, startRadius, endRadius);
+			SupportAnimator anim = io.codetail.animation.ViewAnimationUtils
+					.createCircularReveal(view, centerX, centerY, startRadius, endRadius);
 			anim.setDuration((int) duration);
 			anim.setInterpolator(interpolator);
 			// Add listener
@@ -279,8 +280,8 @@ public class MaterialSheetAnimation {
 	}
 
 	protected int getSheetRevealCenterY(View fab) {
-		return (int) ((sheet.getHeight() * (SHEET_REVEAL_OFFSET_Y - 1) / SHEET_REVEAL_OFFSET_Y) - fab
-				.getPivotY());
+		return ((sheet.getHeight() * (SHEET_REVEAL_OFFSET_Y - 1) / SHEET_REVEAL_OFFSET_Y)
+				- (fab.getHeight() / 2));
 	}
 
 	protected float getSheetRevealRadius() {

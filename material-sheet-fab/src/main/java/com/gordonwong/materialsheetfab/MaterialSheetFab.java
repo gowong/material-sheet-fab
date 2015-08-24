@@ -266,8 +266,8 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 	}
 
 	protected void setFabAnchor(float translationX, float translationY) {
-		anchorX = fab.getX() + fab.getPivotX() + (translationX - fab.getTranslationX());
-		anchorY = fab.getY() + fab.getPivotY() + (translationY - fab.getTranslationY());
+		anchorX = fab.getX() + (fab.getWidth() / 2) + (translationX - fab.getTranslationX());
+		anchorY = fab.getY() + (fab.getHeight() / 2) + (translationY - fab.getTranslationY());
 	}
 
 	private synchronized boolean isAnimating() {
