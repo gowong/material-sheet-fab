@@ -1,4 +1,7 @@
 # Changelog
+##v1.0.4 - September 5, 2015
+* Fix FAB shifting by 1 pixel when opening and closing sheet on certain devices.
+
 ## v1.0.3 - August 23, 2015
 * Fix cases where the FAB doesn't return to the correct position after hiding the sheet.
 
