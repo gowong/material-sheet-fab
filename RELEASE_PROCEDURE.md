@@ -15,7 +15,7 @@
 1. Commit release changes. Tag release commit.
 
 ## Sample app
-1. Increment `version number` and `version code` in `sample/build.gradle`.
+1. Increment `versionName` and `versionCode` in `sample/build.gradle`.
 1. Build signed APKs using Android Studio `Build > Generate Signed APK...`.
 1. Test APKs when upgrading and installing for the first time.
 1. Upload APKs to Google Play.
