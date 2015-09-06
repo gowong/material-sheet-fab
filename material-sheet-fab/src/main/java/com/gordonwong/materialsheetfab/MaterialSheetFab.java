@@ -29,8 +29,8 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 	// Animation durations
 	private static final int SHEET_ANIM_DURATION = (IS_LOLLIPOP ? 600 : 300) * ANIMATION_SPEED;
 	private static final int SHOW_SHEET_COLOR_ANIM_DURATION = (int) (SHEET_ANIM_DURATION * 0.75);
-	private static final int HIDE_SHEET_COLOR_ANIM_DURATION = IS_LOLLIPOP ? (int) (SHEET_ANIM_DURATION * 1.5)
-			: (SHEET_ANIM_DURATION * 2);
+	private static final int HIDE_SHEET_COLOR_ANIM_DURATION = IS_LOLLIPOP
+			? (int) (SHEET_ANIM_DURATION * 1.5) : (SHEET_ANIM_DURATION * 2);
 	private static final int FAB_ANIM_DURATION = 300 * ANIMATION_SPEED;
 	private static final int SHOW_OVERLAY_ANIM_DURATION = MaterialSheetFab.SHOW_SHEET_ANIM_DELAY
 			+ SHEET_ANIM_DURATION;
@@ -54,8 +54,8 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 	protected OverlayAnimation overlayAnimation;
 
 	// State
-	protected float anchorX;
-	protected float anchorY;
+	protected int anchorX;
+	protected int anchorY;
 	private boolean isAnimating;
 	private boolean isFabLaidOut;
 
@@ -98,8 +98,8 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 		});
 
 		// Set listener for when FAB view is laid out
-		fab.getViewTreeObserver().addOnGlobalLayoutListener(
-				new ViewTreeObserver.OnGlobalLayoutListener() {
+		fab.getViewTreeObserver()
+				.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
 					@Override
 					public void onGlobalLayout() {
 						// Initialize FAB anchor when the FAB view is laid out
@@ -266,8 +266,10 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 	}
 
 	protected void setFabAnchor(float translationX, float translationY) {
-		anchorX = fab.getX() + (fab.getWidth() / 2) + (translationX - fab.getTranslationX());
-		anchorY = fab.getY() + (fab.getHeight() / 2) + (translationY - fab.getTranslationY());
+		anchorX = Math
+				.round(fab.getX() + (fab.getWidth() / 2) + (translationX - fab.getTranslationX()));
+		anchorY = Math
+				.round(fab.getY() + (fab.getHeight() / 2) + (translationY - fab.getTranslationY()));
 	}
 
 	private synchronized boolean isAnimating() {
