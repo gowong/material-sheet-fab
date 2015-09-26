@@ -1,4 +1,7 @@
 # Changelog
+##v1.0.5 - September 26, 2015
+* Fix certain CardView styles not being applied on Android > 5.0.
+
 ##v1.0.4 - September 5, 2015
 * Fix FAB shifting by 1 pixel when opening and closing sheet on certain devices.
 
