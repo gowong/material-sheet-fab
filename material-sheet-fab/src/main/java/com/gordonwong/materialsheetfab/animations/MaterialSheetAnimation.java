@@ -37,8 +37,7 @@ public class MaterialSheetAnimation {
 		this.sheetColor = sheetColor;
 		this.fabColor = fabColor;
 		this.interpolator = interpolator;
-		isSupportCardView = (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP)
-				&& sheet.getClass().getName().equals(SUPPORT_CARDVIEW_CLASSNAME);
+		isSupportCardView = sheet.getClass().getName().equals(SUPPORT_CARDVIEW_CLASSNAME);
 		// Get setCardBackgroundColor() method
 		if (isSupportCardView) {
 			try {
@@ -228,8 +227,8 @@ public class MaterialSheetAnimation {
 				// Update background color
 				Integer color = (Integer) animator.getAnimatedValue();
 
-				// Use setCardBackgroundColor() to avoid crashes if a CardView is used as a sheet on
-				// Android < 5.0
+				// Use CardView.setCardBackgroundColor() to avoid crashes on Android < 5.0 and to
+				// properly set the card's background color without removing the card's other styles
 				// See https://github.com/gowong/material-sheet-fab/pull/2 and
 				// https://code.google.com/p/android/issues/detail?id=77843
 				if (isSupportCardView) {
@@ -243,7 +242,7 @@ public class MaterialSheetAnimation {
 						}
 					}
 				}
-				// Set background color for CardView on Android >= 5.0 and all other views
+				// Set background color for all other views
 				else {
 					view.setBackgroundColor(color);
 				}
