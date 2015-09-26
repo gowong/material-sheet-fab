@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="Theme.MaterialSheetFab.Base" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/theme_primary</item>
@@ -24,7 +24,7 @@
         <item name="android:background">?attr/colorPrimary</item>
         <item name="android:theme">@style/ThemeOverlay.MaterialSheetFab.ActionBar</item>
         <item name="popupTheme">@style/ThemeOverlay.MaterialSheetFab.ActionBar.Popup</item>
-        <item name="android:elevation">@dimen/toolbar_elevation</item>
+        <item name="android:elevation" tools:ignore="NewApi">@dimen/toolbar_elevation</item>
         <item name="layout_scrollFlags">scroll|enterAlways</item>
     </style>
 
@@ -33,7 +33,7 @@
         <item name="android:layout_height">?attr/actionBarSize</item>
         <item name="android:background">?attr/colorPrimary</item>
         <item name="android:theme">@style/ThemeOverlay.MaterialSheetFab.ActionBar</item>
-        <item name="android:elevation">@dimen/toolbar_elevation</item>
+        <item name="android:elevation" tools:ignore="NewApi">@dimen/toolbar_elevation</item>
         <item name="tabMode">fixed</item>
         <item name="tabGravity">fill</item>
     </style>
@@ -42,7 +42,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_margin">@dimen/fab_spacing</item>
-        <item name="android:elevation">@dimen/fab_elevation</item>
+        <item name="android:elevation" tools:ignore="NewApi">@dimen/fab_elevation</item>
         <item name="android:src">@drawable/ic_add_grey600_24dp</item>
         <item name="fabSize">normal</item>
         <item name="borderWidth">0dp</item>
