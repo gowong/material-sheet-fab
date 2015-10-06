@@ -167,7 +167,7 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 		hideSheet(null);
 	}
 
-	protected void hideSheet(final AnimationListener endListener) {
+	public void hideSheet(final AnimationListener endListener) {
 		if (isAnimating()) {
 			return;
 		}
