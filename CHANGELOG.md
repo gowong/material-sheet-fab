@@ -1,4 +1,8 @@
 # Changelog
+##v1.1 - October 10, 2015
+* Added callbacks for when the sheet's show and hide animations end: `onSheetShown()` and `onSheetHidden()`
+* Calling `hideSheet()` while the sheet is opening will hide it after is shown
+
 ##v1.0.5 - September 26, 2015
 * Fix certain CardView styles not being applied on Android > 5.0.
 
