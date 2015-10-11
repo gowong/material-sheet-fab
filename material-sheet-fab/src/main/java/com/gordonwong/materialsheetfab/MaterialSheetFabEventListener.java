@@ -8,14 +8,26 @@ package com.gordonwong.materialsheetfab;
 public abstract class MaterialSheetFabEventListener {
 
 	/**
-	 * Called when the material sheet is shown.
+	 * Called when the material sheet's "show" animation starts.
 	 */
 	public void onShowSheet() {
 	}
 
 	/**
-	 * Called when the material sheet is hidden.
+	 * Called when the material sheet's "show" animation ends.
+	 */
+	public void onSheetShown() {
+	}
+
+	/**
+	 * Called when the material sheet's "hide" animation starts.
 	 */
 	public void onHideSheet() {
+	}
+
+	/**
+	 * Called when the material sheet's "hide" animation ends.
+	 */
+	public void onSheetHidden() {
 	}
 }

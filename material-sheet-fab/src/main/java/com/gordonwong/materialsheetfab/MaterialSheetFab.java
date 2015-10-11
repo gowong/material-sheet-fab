@@ -149,6 +149,11 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 		morphIntoSheet(new AnimationListener() {
 			@Override
 			public void onEnd() {
+				// Call event listener
+				if (eventListener != null) {
+					eventListener.onSheetShown();
+				}
+
 				// Assuming that this is the last animation to finish
 				setIsAnimating(false);
 			}
@@ -180,9 +185,14 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 		morphFromSheet(new AnimationListener() {
 			@Override
 			public void onEnd() {
+				// Call event listeners
 				if (endListener != null) {
 					endListener.onEnd();
 				}
+				if (eventListener != null) {
+					eventListener.onSheetHidden();
+				}
+
 				// Assuming that this is the last animation to finish
 				setIsAnimating(false);
 			}
