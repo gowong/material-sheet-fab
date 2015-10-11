@@ -115,7 +115,8 @@ public class MaterialSheetFabActivity extends Activity {
         int fabColor = getResources().getColor(R.color.fab_color);
 
         // Initialize material sheet FAB
-        materialSheetFab = new MaterialSheetFab<>(fab, sheetView, overlay, sheetColor, fabColor);
+        materialSheetFab = new MaterialSheetFab<>(fab, sheetView, overlay,
+            sheetColor, fabColor);
     }
 }
 ```
