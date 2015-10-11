@@ -58,6 +58,7 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 	protected int anchorY;
 	private boolean isAnimating;
 	private boolean isFabLaidOut;
+	private boolean hideSheetAfterSheetIsShown;
 
 	// Listeners
 	private MaterialSheetFabEventListener eventListener;
@@ -156,6 +157,12 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 
 				// Assuming that this is the last animation to finish
 				setIsAnimating(false);
+
+				// Hide sheet after it is shown
+				if (hideSheetAfterSheetIsShown) {
+					hideSheet();
+					hideSheetAfterSheetIsShown = false;
+				}
 			}
 		});
 
@@ -174,6 +181,8 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 
 	protected void hideSheet(final AnimationListener endListener) {
 		if (isAnimating()) {
+			// Wait until the sheet is shown and then hide it
+			hideSheetAfterSheetIsShown = true;
 			return;
 		}
 		setIsAnimating(true);
