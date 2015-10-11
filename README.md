@@ -138,12 +138,21 @@ public void onBackPressed() {
 materialSheetFab.setEventListener(new MaterialSheetFabEventListener() {
     @Override
     public void onShowSheet() {
-        // Called when sheet is shown
+        // Called when the material sheet's "show" animation starts.
+    }
+    
+    @Override
+    public void onSheetShown() {
+        // Called when the material sheet's "show" animation ends.
     }
 
     @Override
     public void onHideSheet() {
-        // Called when sheet is hidden
+        // Called when the material sheet's "hide" animation starts.
+    }
+     
+    public void onSheetHidden() {
+        // Called when the material sheet's "hide" animation ends.
     }
 });
 ```
