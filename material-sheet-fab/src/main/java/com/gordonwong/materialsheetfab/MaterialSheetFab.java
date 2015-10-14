@@ -62,7 +62,8 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 	// Listeners
 	private MaterialSheetFabEventListener eventListener;
 
-	public MaterialSheetFab(FAB fab, View sheet, View overlay, int sheetColor, int fabColor) {
+	public MaterialSheetFab(FAB fab, View sheet, View overlay, int sheetColor, int fabColor
+		, boolean isRTL) {
 		Interpolator interpolator = AnimationUtils.loadInterpolator(sheet.getContext(),
 				R.interpolator.msf_interpolator);
 
@@ -70,7 +71,7 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 
 		// Create animations
 		fabAnimation = new FabAnimation(fab, interpolator);
-		sheetAnimation = new MaterialSheetAnimation(sheet, sheetColor, fabColor, interpolator);
+		sheetAnimation = new MaterialSheetAnimation(sheet, sheetColor, fabColor, interpolator, isRTL);
 		overlayAnimation = new OverlayAnimation(overlay, interpolator);
 
 		// Set initial visibilities
@@ -136,7 +137,7 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 	/**
 	 * Shows the sheet.
 	 */
-	public void showSheet() {
+	public void showSheet(boolean alignWithFab) {
 		if (isAnimating()) {
 			return;
 		}
@@ -152,7 +153,7 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 				// Assuming that this is the last animation to finish
 				setIsAnimating(false);
 			}
-		});
+		}, alignWithFab);
 
 		// Call event listener
 		if (eventListener != null) {
@@ -214,14 +215,16 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 		}
 	}
 
-	protected void morphIntoSheet(final AnimationListener endListener) {
+	protected void morphIntoSheet(final AnimationListener endListener, boolean alignWithFab) {
 
 		// Update FAB anchor to ensure that the FAB returns to the correct position when hiding the
 		// sheet
 		updateFabAnchor();
 
-		// Align sheet's position with FAB
-		sheetAnimation.alignSheetWithFab(fab);
+		if (alignWithFab) {
+			// Align sheet's position with FAB
+			sheetAnimation.alignSheetWithFab(fab);
+		}
 
 		// Morph FAB into sheet
 		float endY = anchorY - sheetAnimation.getRevealTranslationY();
