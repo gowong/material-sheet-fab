@@ -160,6 +160,10 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 			eventListener.onShowSheet();
 		}
 	}
+	
+	public void showSheet() {
+		showSheet(true);
+	}
 
 	/**
 	 * Hides the sheet.
