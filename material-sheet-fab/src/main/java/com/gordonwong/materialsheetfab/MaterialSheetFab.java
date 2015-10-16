@@ -13,6 +13,8 @@ import com.gordonwong.materialsheetfab.animations.FabAnimation;
 import com.gordonwong.materialsheetfab.animations.MaterialSheetAnimation;
 import com.gordonwong.materialsheetfab.animations.OverlayAnimation;
 
+import io.codetail.animation.arcanimator.Side;
+
 /**
  * Created by Gordon Wong on 7/9/2015.
  * 
@@ -244,8 +246,8 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 
 		// Morph FAB into sheet
 		float endY = anchorY - sheetAnimation.getRevealTranslationY();
-		fabAnimation.morphIntoSheet(sheetAnimation.getSheetCenterX(), endY, FAB_ARC_DEGREES,
-				FAB_SCALE_FACTOR, FAB_ANIM_DURATION, null);
+		fabAnimation.morphIntoSheet(sheetAnimation.getSheetCenterX(), endY, Side.LEFT,
+				FAB_ARC_DEGREES, FAB_SCALE_FACTOR, FAB_ANIM_DURATION, null);
 
 		// Show sheet after a delay
 		new Handler().postDelayed(new Runnable() {
@@ -273,8 +275,8 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 				sheetAnimation.setSheetVisibility(View.INVISIBLE);
 
 				// Show FAB
-				fabAnimation.morphFromSheet(anchorX, anchorY, FAB_ARC_DEGREES, -FAB_SCALE_FACTOR,
-						FAB_ANIM_DURATION, endListener);
+				fabAnimation.morphFromSheet(anchorX, anchorY, Side.LEFT, FAB_ARC_DEGREES,
+						-FAB_SCALE_FACTOR, FAB_ANIM_DURATION, endListener);
 			}
 		}, MOVE_FAB_ANIM_DELAY);
 	}

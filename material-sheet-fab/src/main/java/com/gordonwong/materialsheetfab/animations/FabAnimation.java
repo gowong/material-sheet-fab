@@ -29,36 +29,38 @@ public class FabAnimation {
 	 *
 	 * @param endX The X coordinate that the FAB will be moved to.
 	 * @param endY The Y coordinate that the FAB will be moved to.
+	 * @param side The side of the arc animation.
 	 * @param arcDegrees Amount of arc in FAB movement animation.
 	 * @param scaleFactor Amount to scale FAB.
 	 * @param duration Duration of the animation in milliseconds. Use 0 for no animation.
 	 * @param listener Listener for animation events.
 	 */
-	public void morphIntoSheet(float endX, float endY, int arcDegrees, float scaleFactor,
+	public void morphIntoSheet(float endX, float endY, Side side, int arcDegrees, float scaleFactor,
 			long duration, AnimationListener listener) {
-		morph(endX, endY, arcDegrees, scaleFactor, duration, listener);
+		morph(endX, endY, side, arcDegrees, scaleFactor, duration, listener);
 	}
 
 	/**
 	 * Animates the FAB as if a sheet is being morphed into a FAB.
-	 * 
+	 *
 	 * @param endX The X coordinate that the FAB will be moved to.
 	 * @param endY The Y coordinate that the FAB will be moved to.
+	 * @param side The side of the arc animation.
 	 * @param arcDegrees Amount of arc in FAB movement animation.
 	 * @param scaleFactor Amount to scale FAB.
 	 * @param duration Duration of the animation in milliseconds. Use 0 for no animation.
 	 * @param listener Listener for animation events.
 	 */
-	public void morphFromSheet(float endX, float endY, int arcDegrees, float scaleFactor,
+	public void morphFromSheet(float endX, float endY, Side side, int arcDegrees, float scaleFactor,
 			long duration, AnimationListener listener) {
 		fab.setVisibility(View.VISIBLE);
-		morph(endX, endY, arcDegrees, scaleFactor, duration, listener);
+		morph(endX, endY, side, arcDegrees, scaleFactor, duration, listener);
 	}
 
-	protected void morph(float endX, float endY, float arcDegrees, float scaleFactor,
+	protected void morph(float endX, float endY, Side side, float arcDegrees, float scaleFactor,
 			long duration, AnimationListener listener) {
 		// Move the FAB
-		startArcAnim(fab, endX, endY, arcDegrees, Side.LEFT, duration, interpolator, listener);
+		startArcAnim(fab, endX, endY, arcDegrees, side, duration, interpolator, listener);
 
 		// Scale the size of the FAB
 		fab.animate().scaleXBy(scaleFactor).scaleYBy(scaleFactor).setDuration(duration)
