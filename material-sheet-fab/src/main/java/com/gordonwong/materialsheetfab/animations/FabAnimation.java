@@ -35,7 +35,7 @@ public class FabAnimation {
 	 * @param duration Duration of the animation in milliseconds. Use 0 for no animation.
 	 * @param listener Listener for animation events.
 	 */
-	public void morphIntoSheet(float endX, float endY, Side side, int arcDegrees, float scaleFactor,
+	public void morphIntoSheet(int endX, int endY, Side side, int arcDegrees, float scaleFactor,
 			long duration, AnimationListener listener) {
 		morph(endX, endY, side, arcDegrees, scaleFactor, duration, listener);
 	}
@@ -51,7 +51,7 @@ public class FabAnimation {
 	 * @param duration Duration of the animation in milliseconds. Use 0 for no animation.
 	 * @param listener Listener for animation events.
 	 */
-	public void morphFromSheet(float endX, float endY, Side side, int arcDegrees, float scaleFactor,
+	public void morphFromSheet(int endX, int endY, Side side, int arcDegrees, float scaleFactor,
 			long duration, AnimationListener listener) {
 		fab.setVisibility(View.VISIBLE);
 		morph(endX, endY, side, arcDegrees, scaleFactor, duration, listener);

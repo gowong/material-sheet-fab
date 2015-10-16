@@ -153,8 +153,10 @@ public class MaterialSheetAnimation {
 			final AnimationListener listener) {
 		// Use native circular reveal on Android 5.0+
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-			// Setup animation
 			// Native circular reveal uses coordinates relative to the view
+			centerX -= view.getX();
+			centerY -= view.getY();
+			// Setup animation
 			Animator anim = ViewAnimationUtils.createCircularReveal(view, centerX, centerY,
 					startRadius, endRadius);
 			anim.setDuration(duration);
@@ -179,8 +181,6 @@ public class MaterialSheetAnimation {
 			anim.start();
 		} else {
 			// Circular reveal library uses absolute coordinates
-			centerX += view.getX();
-			centerY += view.getY();
 			// Setup animation
 			SupportAnimator anim = io.codetail.animation.ViewAnimationUtils
 					.createCircularReveal(view, centerX, centerY, startRadius, endRadius);
@@ -269,25 +269,18 @@ public class MaterialSheetAnimation {
 	}
 
 	/**
-	 * @return Sheet's center X coordinate
+	 * @return Sheet reveal's center X coordinate
 	 */
-	public float getSheetCenterX() {
-		return sheet.getX() + getSheetRevealCenterX();
+	public int getSheetRevealCenterX() {
+		return (int) (sheet.getX() + (sheet.getWidth() / 2));
 	}
 
 	/**
-	 * @return Translation Y value for the reveal sheet animation
+	 * @return Sheet reveal's center Y coordinate
 	 */
-	public int getRevealTranslationY() {
-		return sheet.getHeight() / SHEET_REVEAL_OFFSET_Y;
-	}
-
-	protected int getSheetRevealCenterX() {
-		return sheet.getWidth() / 2;
-	}
-
-	protected int getSheetRevealCenterY(View fab) {
-		return ((sheet.getHeight() * (SHEET_REVEAL_OFFSET_Y - 1) / SHEET_REVEAL_OFFSET_Y)
+	public int getSheetRevealCenterY(View fab) {
+		return (int) (sheet.getY()
+				+ (sheet.getHeight() * (SHEET_REVEAL_OFFSET_Y - 1) / SHEET_REVEAL_OFFSET_Y)
 				- (fab.getHeight() / 2));
 	}
 

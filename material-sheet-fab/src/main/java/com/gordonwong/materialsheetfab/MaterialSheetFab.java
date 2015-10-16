@@ -262,8 +262,8 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 		sheetAnimation.alignSheetWithFab(fab);
 
 		// Morph FAB into sheet
-		float endY = anchorY - sheetAnimation.getRevealTranslationY();
-		fabAnimation.morphIntoSheet(sheetAnimation.getSheetCenterX(), endY,
+		fabAnimation.morphIntoSheet(sheetAnimation.getSheetRevealCenterX(),
+				sheetAnimation.getSheetRevealCenterY(fab),
 				getFabArcSide(sheetAnimation.getRevealXDirection()), FAB_ARC_DEGREES,
 				FAB_SCALE_FACTOR, FAB_ANIM_DURATION, null);
 
