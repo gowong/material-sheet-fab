@@ -12,6 +12,9 @@ import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
 import android.view.animation.Interpolator;
 
+import com.gordonwong.materialsheetfab.MaterialSheetFab.RevealXDirection;
+import com.gordonwong.materialsheetfab.MaterialSheetFab.RevealYDirection;
+
 import io.codetail.animation.SupportAnimator;
 
 /**
@@ -28,6 +31,8 @@ public class MaterialSheetAnimation {
 	private int sheetColor;
 	private int fabColor;
 	private Interpolator interpolator;
+	private RevealXDirection revealXDirection;
+	private RevealYDirection revealYDirection;
 	private Method setCardBackgroundColor;
 	private boolean isSupportCardView;
 
@@ -37,6 +42,9 @@ public class MaterialSheetAnimation {
 		this.sheetColor = sheetColor;
 		this.fabColor = fabColor;
 		this.interpolator = interpolator;
+		// Default reveal direction is up and to the left (for FABs in the bottom right corner)
+		revealXDirection = RevealXDirection.LEFT;
+		revealYDirection = RevealYDirection.UP;
 		isSupportCardView = sheet.getClass().getName().equals(SUPPORT_CARDVIEW_CLASSNAME);
 		// Get setCardBackgroundColor() method
 		if (isSupportCardView) {
@@ -291,4 +299,11 @@ public class MaterialSheetAnimation {
 		return Math.max(fab.getWidth(), fab.getHeight()) / 2;
 	}
 
+	public RevealXDirection getRevealXDirection() {
+		return revealXDirection;
+	}
+
+	public RevealYDirection getRevealYDirection() {
+		return revealYDirection;
+	}
 }

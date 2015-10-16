@@ -65,6 +65,23 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 	// Listeners
 	private MaterialSheetFabEventListener eventListener;
 
+	public enum RevealXDirection {
+		LEFT, RIGHT
+	}
+
+	public enum RevealYDirection {
+		UP, DOWN
+	}
+
+	/**
+	 * Creates a MaterialSheetFab instance and sets up the necessary click listeners.
+	 *
+	 * @param fab The FAB view.
+	 * @param sheet The sheet view.
+	 * @param overlay The overlay view.
+	 * @param sheetColor The background color of the material sheet.
+	 * @param fabColor The background color of the FAB.
+	 */
 	public MaterialSheetFab(FAB fab, View sheet, View overlay, int sheetColor, int fabColor) {
 		Interpolator interpolator = AnimationUtils.loadInterpolator(sheet.getContext(),
 				R.interpolator.msf_interpolator);
@@ -246,8 +263,9 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 
 		// Morph FAB into sheet
 		float endY = anchorY - sheetAnimation.getRevealTranslationY();
-		fabAnimation.morphIntoSheet(sheetAnimation.getSheetCenterX(), endY, Side.LEFT,
-				FAB_ARC_DEGREES, FAB_SCALE_FACTOR, FAB_ANIM_DURATION, null);
+		fabAnimation.morphIntoSheet(sheetAnimation.getSheetCenterX(), endY,
+				getFabArcSide(sheetAnimation.getRevealXDirection()), FAB_ARC_DEGREES,
+				FAB_SCALE_FACTOR, FAB_ANIM_DURATION, null);
 
 		// Show sheet after a delay
 		new Handler().postDelayed(new Runnable() {
@@ -275,7 +293,8 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 				sheetAnimation.setSheetVisibility(View.INVISIBLE);
 
 				// Show FAB
-				fabAnimation.morphFromSheet(anchorX, anchorY, Side.LEFT, FAB_ARC_DEGREES,
+				fabAnimation.morphFromSheet(anchorX, anchorY,
+						getFabArcSide(sheetAnimation.getRevealXDirection()), FAB_ARC_DEGREES,
 						-FAB_SCALE_FACTOR, FAB_ANIM_DURATION, endListener);
 			}
 		}, MOVE_FAB_ANIM_DELAY);
@@ -291,6 +310,14 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 				.round(fab.getX() + (fab.getWidth() / 2) + (translationX - fab.getTranslationX()));
 		anchorY = Math
 				.round(fab.getY() + (fab.getHeight() / 2) + (translationY - fab.getTranslationY()));
+	}
+
+	private Side getFabArcSide(RevealXDirection revealXDirection) {
+		if (revealXDirection == RevealXDirection.LEFT) {
+			return Side.LEFT;
+		} else {
+			return Side.RIGHT;
+		}
 	}
 
 	private synchronized boolean isAnimating() {
