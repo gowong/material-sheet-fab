@@ -1,4 +1,8 @@
 # Changelog
+##v1.2 - October 16, 2015
+* Allow the FAB to be placed anywhere on the screen with the sheet opening to the correct position.
+* Fix sheet incorrectly hiding after opening in certain cases.
+
 ##v1.1 - October 10, 2015
 * Added callbacks for when the sheet's show and hide animations end: `onSheetShown()` and `onSheetHidden()`
 * Calling `hideSheet()` while the sheet is opening will hide it after it is shown
