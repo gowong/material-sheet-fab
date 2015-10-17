@@ -2,7 +2,6 @@
 ##v1.2 - October 16, 2015
 * Allow the FAB to be placed anywhere on the screen with the sheet opening to the correct position.
 * Fix sheet incorrectly hiding after opening in certain cases.
-* **[BREAKING]** The FAB and reveal container `RevealLinearLayout` must be in the same level in the view hierarchy.
 
 ##v1.1 - October 10, 2015
 * Added callbacks for when the sheet's show and hide animations end: `onSheetShown()` and `onSheetHidden()`
