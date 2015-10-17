@@ -23,6 +23,7 @@ public class MaterialSheetAnimation {
 
 	private static final String SUPPORT_CARDVIEW_CLASSNAME = "android.support.v7.widget.CardView";
 	private static final int SHEET_REVEAL_OFFSET_Y = 5;
+	private boolean isRTL = false;
 
 	private View sheet;
 	private int sheetColor;
@@ -32,7 +33,8 @@ public class MaterialSheetAnimation {
 	private boolean isSupportCardView;
 
 	public MaterialSheetAnimation(View sheet, int sheetColor, int fabColor,
-			Interpolator interpolator) {
+			Interpolator interpolator, boolean isRTL) {
+		this.isRTL = isRTL;
 		this.sheet = sheet;
 		this.sheetColor = sheetColor;
 		this.fabColor = fabColor;
@@ -64,6 +66,7 @@ public class MaterialSheetAnimation {
 		// Get FAB's coordinates
 		int[] fabCoords = new int[2];
 		fab.getLocationOnScreen(fabCoords);
+		int fabLeft = fabCoords[0];
 		int fabRight = fabCoords[0] + fab.getWidth();
 		int fabBottom = fabCoords[1] + fab.getHeight();
 
@@ -72,17 +75,18 @@ public class MaterialSheetAnimation {
 		sheet.getLocationOnScreen(sheetCoords);
 		ViewGroup.MarginLayoutParams sheetLayoutParams = (ViewGroup.MarginLayoutParams) sheet
 				.getLayoutParams();
+		int sheetLeft = sheetCoords[0] - sheetLayoutParams.leftMargin;	
 		int sheetRight = sheetCoords[0] + sheet.getWidth() + sheetLayoutParams.rightMargin;
 		int sheetBottom = sheetCoords[1] + sheet.getHeight() + sheetLayoutParams.bottomMargin;
 
-		int rightDiff = (sheetRight - fabRight);
 		int bottomDiff = (sheetBottom - fabBottom);
+		int horizontalDiff = isRTL ? (sheetLeft - fabLeft) : (sheetRight - fabRight);
 
 		// Set sheet's new coordinates (only if there is a change in coordinates because
 		// setting the same coordinates can cause the view to "drift" - moving 0.5 to 1 pixels
 		// around the screen)
-		if (rightDiff != 0) {
-			sheet.setX(sheet.getX() - rightDiff);
+		if (horizontalDiff != 0) {
+			sheet.setX(sheet.getX() - horizontalDiff);
 		}
 		if (bottomDiff != 0) {
 			sheet.setY(sheet.getY() - bottomDiff);
