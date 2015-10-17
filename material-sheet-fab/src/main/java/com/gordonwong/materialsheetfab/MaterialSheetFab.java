@@ -58,7 +58,8 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 	// State
 	protected int anchorX;
 	protected int anchorY;
-	private boolean isAnimating;
+	private boolean isShowing;
+	private boolean isHiding;
 	private boolean isFabLaidOut;
 	private boolean hideSheetAfterSheetIsShown;
 
@@ -160,7 +161,7 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 		if (isAnimating()) {
 			return;
 		}
-		setIsAnimating(true);
+		isShowing = true;
 
 		// Show overlay
 		overlayAnimation.show(SHOW_OVERLAY_ANIM_DURATION, null);
@@ -175,7 +176,7 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 				}
 
 				// Assuming that this is the last animation to finish
-				setIsAnimating(false);
+				isShowing = false;
 
 				// Hide sheet after it is shown
 				if (hideSheetAfterSheetIsShown) {
@@ -201,10 +202,12 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 	protected void hideSheet(final AnimationListener endListener) {
 		if (isAnimating()) {
 			// Wait until the sheet is shown and then hide it
-			hideSheetAfterSheetIsShown = true;
+			if (isShowing) {
+				hideSheetAfterSheetIsShown = true;
+			}
 			return;
 		}
-		setIsAnimating(true);
+		isHiding = true;
 
 		// Hide overlay
 		overlayAnimation.hide(HIDE_OVERLAY_ANIM_DURATION, null);
@@ -222,7 +225,7 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 				}
 
 				// Assuming that this is the last animation to finish
-				setIsAnimating(false);
+				isHiding = false;
 			}
 		});
 
@@ -320,12 +323,8 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 		}
 	}
 
-	private synchronized boolean isAnimating() {
-		return isAnimating;
-	}
-
-	private synchronized void setIsAnimating(boolean isAnimating) {
-		this.isAnimating = isAnimating;
+	private boolean isAnimating() {
+		return isShowing || isHiding;
 	}
 
 	public boolean isSheetVisible() {
