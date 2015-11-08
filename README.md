@@ -170,6 +170,13 @@ materialSheetFab.showFab(translationX, translationY);
 
 Take a look at the [sample code](./sample/) and try the [app](https://play.google.com/store/apps/details?id=com.gordonwong.materialsheetfab.sample).
 
+## Apps using MaterialSheetFab
+Feel free to open a pull request to include your app here.
+
+Icon | App
+ --- | ---
+![BG Monitor](http://bg-monitor.com/images/favicon.png)|[BG Monitor - Diabetes Management](http://bg-monitor.com/)
+
 ## Changelog
 See changelog [here](./CHANGELOG.md).
 
