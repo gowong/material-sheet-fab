@@ -49,7 +49,9 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
 		holder.infoTextView.setText(info);
 
 		// Set image
-		holder.infoImageView.setImageResource(infoImage);
+		if (infoImage != 0) {
+			holder.infoImageView.setImageResource(infoImage);
+		}
 
 		// Set visibilities
 		holder.titleTextView.setVisibility(TextUtils.isEmpty(title) ? View.GONE : View.VISIBLE);
