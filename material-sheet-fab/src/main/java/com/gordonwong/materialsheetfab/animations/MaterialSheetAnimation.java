@@ -26,6 +26,8 @@ public class MaterialSheetAnimation {
 
 	private static final String SUPPORT_CARDVIEW_CLASSNAME = "android.support.v7.widget.CardView";
 	private static final int SHEET_REVEAL_OFFSET_Y = 5;
+	private static final int SHEET_ALPHA_HIDDEN = 0;
+	private static final int SHEET_ALPHA_SHOWN = 1;
 
 	private View sheet;
 	private int sheetColor;
@@ -139,7 +141,8 @@ public class MaterialSheetAnimation {
 			AnimationListener listener) {
 		sheet.setVisibility(View.VISIBLE);
 		revealSheetWithFab(fab, getFabRevealRadius(fab), getSheetRevealRadius(), showSheetDuration,
-				fabColor, sheetColor, showSheetColorDuration, listener);
+				fabColor, sheetColor, showSheetColorDuration, SHEET_ALPHA_HIDDEN, SHEET_ALPHA_SHOWN,
+				listener);
 	}
 
 	/**
@@ -155,12 +158,13 @@ public class MaterialSheetAnimation {
 	public void morphIntoFab(View fab, long hideSheetDuration, long hideSheetColorDuration,
 			AnimationListener listener) {
 		revealSheetWithFab(fab, getSheetRevealRadius(), getFabRevealRadius(fab), hideSheetDuration,
-				sheetColor, fabColor, hideSheetColorDuration, listener);
+				sheetColor, fabColor, hideSheetColorDuration, SHEET_ALPHA_SHOWN, SHEET_ALPHA_HIDDEN,
+				listener);
 	}
 
 	protected void revealSheetWithFab(View fab, float startRadius, float endRadius,
 			long sheetDuration, int startColor, int endColor, long sheetColorDuration,
-			AnimationListener listener) {
+			float startAlpha, float endAlpha, AnimationListener listener) {
 		if (listener != null) {
 			listener.onStart();
 		}
@@ -174,6 +178,10 @@ public class MaterialSheetAnimation {
 				startRadius, endRadius, sheetDuration, interpolator, revealListener);
 		startColorAnim(sheet, startColor, endColor, sheetColorDuration, interpolator,
 				colorListener);
+		View sheetItemsContainer = getSheetItemsContainer();
+		if (sheetItemsContainer != null) {
+			startAlphaAnim(sheetItemsContainer, startAlpha, endAlpha, sheetDuration, interpolator);
+		}
 	}
 
 	protected void startCircularRevealAnim(View view, int centerX, int centerY, float startRadius,
@@ -286,6 +294,27 @@ public class MaterialSheetAnimation {
 		});
 		// Start animation
 		anim.start();
+	}
+
+	protected void startAlphaAnim(final View view, final float startAlpha, final float endAlpha,
+			long duration, Interpolator interpolator) {
+		view.animate().alpha(endAlpha).setDuration(duration).setInterpolator(interpolator)
+				.setListener(new AnimatorListenerAdapter() {
+					@Override
+					public void onAnimationStart(Animator animation) {
+						view.setAlpha(startAlpha);
+					}
+				}).start();
+	}
+
+	protected View getSheetItemsContainer() {
+		if (sheet instanceof ViewGroup) {
+			ViewGroup sheetViewGroup = (ViewGroup) sheet;
+			if (sheetViewGroup.getChildCount() > 0) {
+				return sheetViewGroup.getChildAt(0);
+			}
+		}
+		return null;
 	}
 
 	public void setSheetVisibility(int visibility) {
