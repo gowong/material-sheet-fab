@@ -23,7 +23,44 @@ Modify your proguard configuration (if necessary).
 ```
 
 ## Usage
-### Modify your layouts:  
+### Implement the FAB:  
+You can use any FAB library as long as it implements the `AnimatedFab` interface.  
+```java
+import android.support.design.widget.FloatingActionButton;
+
+public class Fab extends FloatingActionButton implements AnimatedFab {
+
+   /**
+    * Shows the FAB.
+    */
+    @Override
+    public void show() {
+        // TODO: Animate the FAB into view or simply set its visibility
+    }
+
+    /**
+     * Shows the FAB and sets the FAB's translation.
+     *
+     * @param translationX translation X value
+     * @param translationY translation Y value
+     */
+    @Override
+    public void show(float translationX, float translationY) {
+        // TODO: This is only needed if you want to support moving
+        // the FAB around the screen.
+    }
+
+    /**
+     * Hides the FAB.
+     */
+    @Override
+    public void hide() {
+        // TODO: Animate the FAB out of view or simply set its visibility
+    }
+}
+```
+
+### Modify the layouts:  
 ```xml
 <RelativeLayout
     android:layout_width="match_parent"
@@ -55,52 +92,15 @@ Modify your proguard configuration (if necessary).
             android:layout_width="250dp"
             android:layout_height="300dp">
             
-            <!-- Put your sheet items here -->
+            <!-- TODO: Put your sheet items here -->
             
         </android.support.v7.widget.CardView>
     </io.codetail.widget.RevealLinearLayout>
 </RelativeLayout>
 ```
 
-### Implement the FAB:  
-You can use any FAB library as long as it implements the `AnimatedFab` interface.  
-```java
-import android.support.design.widget.FloatingActionButton;
-
-public class Fab extends FloatingActionButton implements AnimatedFab {
-
-   /**
-    * Shows the FAB.
-    */
-    @Override
-    public void show() {
-        // Animate the FAB into view or simply set its visibility
-    }
-
-    /**
-     * Shows the FAB and sets the FAB's translation.
-     *
-     * @param translationX translation X value
-     * @param translationY translation Y value
-     */
-    @Override
-    public void show(float translationX, float translationY) {
-        // This is only needed if you want to support moving
-        // the FAB around the screen.
-    }
-
-    /**
-     * Hides the FAB.
-     */
-    @Override
-    public void hide() {
-        // Animate the FAB out of view or simply set its visibility
-    }
-}
-```
-
-### Initialize the material sheet FAB:  
-This can be done from your Activity or Fragment.  
+### Initialize the MaterialSheetFab:  
+This can be in your Activity or Fragment.  
 ```java
 public class MaterialSheetFabActivity extends Activity {
 
@@ -163,12 +163,8 @@ materialSheetFab.setEventListener(new MaterialSheetFabEventListener() {
 materialSheetFab.showFab(translationX, translationY);
 ```
 
-
-## Sample
-<a href="https://play.google.com/store/apps/details?id=com.gordonwong.materialsheetfab.sample">
-  <img alt="Get it on Google Play"
-       src="https://developer.android.com/images/brand/en_generic_rgb_wo_60.png" />
-</a>
+## Sample app
+[![Get it on Google Play](https://developer.android.com/images/brand/en_generic_rgb_wo_60.png)](https://play.google.com/store/apps/details?id=com.gordonwong.materialsheetfab.sample)
 
 ![Sample 1](art/sample1.png) ![Sample 2](art/sample2.png)
 
