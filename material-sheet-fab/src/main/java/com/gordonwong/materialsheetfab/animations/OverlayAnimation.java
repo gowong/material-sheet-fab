@@ -63,7 +63,7 @@ public class OverlayAnimation {
 					}
 
 					@Override
-					public void onAnimationEnd(android.animation.Animator animation) {
+					public void onAnimationEnd(Animator animation) {
 						overlay.setVisibility(View.GONE);
 						if (listener != null) {
 							listener.onEnd();

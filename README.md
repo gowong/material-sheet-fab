@@ -1,5 +1,6 @@
 # MaterialSheetFab
 [![Maven Central](https://img.shields.io/maven-central/v/com.gordonwong/material-sheet-fab.svg)](https://oss.sonatype.org/content/repositories/releases/com/gordonwong/material-sheet-fab/)
+[![Codacy Badge](https://api.codacy.com/project/badge/grade/7bc537c29cfc4b74917fb0b2448d7127)](https://www.codacy.com/app/gowong/material-sheet-fab)
 [![GitHub license](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://raw.githubusercontent.com/gowong/material-sheet-fab/master/LICENSE)
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-MaterialSheetFab-green.svg?style=flat)](https://android-arsenal.com/details/1/2178)
 [![Android Weekly](https://img.shields.io/badge/Android%20Weekly-166-green.svg?style=flat)](http://androidweekly.net/issues/issue-166)

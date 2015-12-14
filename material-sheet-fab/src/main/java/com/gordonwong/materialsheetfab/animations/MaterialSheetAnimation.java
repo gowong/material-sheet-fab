@@ -182,11 +182,11 @@ public class MaterialSheetAnimation {
 		// Use native circular reveal on Android 5.0+
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 			// Native circular reveal uses coordinates relative to the view
-			centerX -= view.getX();
-			centerY -= view.getY();
+			int relativeCenterX = (int) (centerX - view.getX());
+			int relativeCenterY = (int) (centerY - view.getY());
 			// Setup animation
-			Animator anim = ViewAnimationUtils.createCircularReveal(view, centerX, centerY,
-					startRadius, endRadius);
+			Animator anim = ViewAnimationUtils.createCircularReveal(view, relativeCenterX,
+					relativeCenterY, startRadius, endRadius);
 			anim.setDuration(duration);
 			anim.setInterpolator(interpolator);
 			// Add listener
