@@ -120,16 +120,7 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 
 		// Set listener for when FAB view is laid out
 		fab.getViewTreeObserver()
-				.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-					@Override
-					public void onGlobalLayout() {
-						// Initialize FAB anchor when the FAB view is laid out
-						if (!isFabLaidOut) {
-							updateFabAnchor();
-							isFabLaidOut = true;
-						}
-					}
-				});
+				.addOnGlobalLayoutListener(onGlobalLayoutListener);
 	}
 
 	/**
@@ -255,6 +246,13 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 		}
 	}
 
+	/**
+	 * Cleans up this view and releases references. Call this before a Fragment's view is destroyed.
+	 */
+	public void dispose() {
+		fab.getViewTreeObserver().removeOnGlobalLayoutListener(onGlobalLayoutListener);
+	}
+
 	protected void morphIntoSheet(final AnimationListener endListener) {
 
 		// Update FAB anchor to ensure that the FAB returns to the correct position when hiding the
@@ -335,4 +333,14 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 		this.eventListener = eventListener;
 	}
 
+	private final ViewTreeObserver.OnGlobalLayoutListener onGlobalLayoutListener = new ViewTreeObserver.OnGlobalLayoutListener() {
+		@Override
+		public void onGlobalLayout() {
+			// Initialize FAB anchor when the FAB view is laid out
+			if (!isFabLaidOut) {
+				updateFabAnchor();
+				isFabLaidOut = true;
+			}
+		}
+	};
 }
