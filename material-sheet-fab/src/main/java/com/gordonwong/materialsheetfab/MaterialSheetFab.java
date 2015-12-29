@@ -60,7 +60,6 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 	protected int anchorY;
 	private boolean isShowing;
 	private boolean isHiding;
-	private boolean isFabLaidOut;
 	private boolean hideSheetAfterSheetIsShown;
 
 	// Listeners
@@ -123,11 +122,11 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 				.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
 					@Override
 					public void onGlobalLayout() {
+						// Removing layout listener to avoid multiple calls
+						MaterialSheetFab.this.fab.getViewTreeObserver()
+								.removeGlobalOnLayoutListener(this);
 						// Initialize FAB anchor when the FAB view is laid out
-						if (!isFabLaidOut) {
-							updateFabAnchor();
-							isFabLaidOut = true;
-						}
+						updateFabAnchor();
 					}
 				});
 	}
