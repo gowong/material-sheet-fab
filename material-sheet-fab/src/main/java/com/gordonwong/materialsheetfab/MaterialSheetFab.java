@@ -122,7 +122,7 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 				.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
 					@Override
 					public void onGlobalLayout() {
-						// Removing layout listener to avoid multiple calls
+						// Remove listener so that this is only called once
 						MaterialSheetFab.this.fab.getViewTreeObserver()
 								.removeGlobalOnLayoutListener(this);
 						// Initialize FAB anchor when the FAB view is laid out
