@@ -3,7 +3,7 @@
 1. Increment `libraryVersion` in `material-sheet-fab/build.gradle` and gradle snippet in `README.md`.
 1. Update changelog.
 1. Fill in bintray credentials in `local.properties`
-1. From terminal in Android Studio:
+1. Run these commands:
 	1. `gradlew install`
 	1. `gradlew bintrayUpload`
 1. Remove credentials from `local.properties`

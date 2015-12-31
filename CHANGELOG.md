@@ -1,4 +1,7 @@
 # Changelog
+##v1.2.1 - December 30, 2015
+* Fix a memory leak.
+
 ##v1.2 - October 16, 2015
 * Allow the FAB to be placed anywhere on the screen with the sheet opening to the correct position.
 * Fix sheet incorrectly hiding after opening in certain cases.
