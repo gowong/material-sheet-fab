@@ -36,7 +36,7 @@ public class Fab extends FloatingActionButton implements AnimatedFab {
     */
     @Override
     public void show() {
-        // TODO: Animate the FAB into view or simply set its visibility
+        show(0, 0);
     }
 
     /**
@@ -47,8 +47,11 @@ public class Fab extends FloatingActionButton implements AnimatedFab {
      */
     @Override
     public void show(float translationX, float translationY) {
-        // TODO: This is only needed if you want to support moving
-        // the FAB around the screen.
+        // NOTE: Using the parameters is only needed if you want
+        // to support moving the FAB around the screen.
+        // NOTE: This immediately hides the FAB. An animation can 
+        // be used instead - see the sample app.
+        setVisibility(View.VISIBLE);
     }
 
     /**
@@ -56,7 +59,9 @@ public class Fab extends FloatingActionButton implements AnimatedFab {
      */
     @Override
     public void hide() {
-        // TODO: Animate the FAB out of view or simply set its visibility
+        // NOTE: This immediately hides the FAB. An animation can
+        // be used instead - see the sample app.
+        setVisibility(View.INVISIBLE);
     }
 }
 ```
