@@ -18,7 +18,7 @@ compile 'com.gordonwong:material-sheet-fab:1.2.1'
 ```
 
 ### Proguard
-Modify your proguard configuration (if necessary).
+Modify your proguard configuration (if your app is using Proguard).
 ```java
 -keep class io.codetail.animation.arcanimator.** { *; }
 ```
