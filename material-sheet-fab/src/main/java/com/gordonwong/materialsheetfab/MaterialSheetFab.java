@@ -61,6 +61,7 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 	private boolean isShowing;
 	private boolean isHiding;
 	private boolean hideSheetAfterSheetIsShown;
+	private boolean autoPositionSheet = true;
 
 	// Listeners
 	private MaterialSheetFabEventListener eventListener;
@@ -130,6 +131,13 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 					}
 				});
 	}
+
+    /**
+     * Enable the consumer to disable sheet auto positioning; fab will travel to wherever the sheet is
+     */
+	public void setAutoPositionSheet(Boolean value) {
+	    autoPositionSheet = value;
+    }
 
 	/**
 	 * Shows the FAB.
@@ -260,8 +268,10 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 		// sheet
 		updateFabAnchor();
 
-		// Align sheet's position with FAB
-		sheetAnimation.alignSheetWithFab(fab);
+		// Align sheet's position with FAB, if desired
+        if (autoPositionSheet) {
+            sheetAnimation.alignSheetWithFab(fab);
+        }
 
 		// Morph FAB into sheet
 		fabAnimation.morphIntoSheet(sheetAnimation.getSheetRevealCenterX(),
