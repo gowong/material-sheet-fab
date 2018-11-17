@@ -25,12 +25,11 @@ ext {
 }
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    compileSdkVersion 28
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 23
+        targetSdkVersion 28
     }
     buildTypes {
         release {
@@ -41,8 +40,10 @@ android {
 }
 
 dependencies {
-    compile 'com.github.asyl.animation:arcanimator:1.0.0'
+//    compile 'com.github.asyl.animation:arcanimator:1.0.0'
+    implementation 'com.github.AndroidDeveloperLB:ArcAnimator:2'
+
 }
 
 apply from: 'bintray.gradle'
-apply from: 'maven.gradle'
+//apply from: 'maven.gradle'

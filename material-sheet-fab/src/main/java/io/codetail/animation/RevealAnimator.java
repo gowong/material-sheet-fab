@@ -1,12 +1,12 @@
 package io.codetail.animation;
 
+import android.animation.Animator;
 import android.annotation.TargetApi;
 import android.graphics.Rect;
 import android.os.Build;
+import android.os.Build.VERSION_CODES;
+import android.util.FloatProperty;
 import android.view.View;
-
-import com.nineoldandroids.animation.Animator;
-import com.nineoldandroids.util.FloatProperty;
 
 import java.lang.ref.WeakReference;
 
@@ -166,8 +166,10 @@ public interface RevealAnimator{
         }
     }
 
+    @TargetApi(VERSION_CODES.N)
     class RevealRadius extends FloatProperty<RevealAnimator> {
 
+        @TargetApi(VERSION_CODES.N)
         public RevealRadius() {
             super("revealRadius");
         }
