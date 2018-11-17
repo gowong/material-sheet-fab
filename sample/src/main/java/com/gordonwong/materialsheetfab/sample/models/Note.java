@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 
 import android.content.Context;
-import android.support.annotation.DrawableRes;
+import androidx.annotation.DrawableRes;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
 
@@ -13,7 +13,7 @@ import com.gordonwong.materialsheetfab.sample.R;
 
 /**
  * Created by Gordon Wong on 7/18/2015.
- * 
+ *
  * Note model.
  */
 public class Note {

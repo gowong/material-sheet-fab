@@ -1,28 +1,28 @@
 apply plugin: 'com.android.library'
 
-ext {
-    bintrayRepo = 'maven'
-    bintrayName = 'material-sheet-fab'
-
-    publishedGroupId = 'com.gordonwong'
-    libraryName = 'material-sheet-fab'
-    artifact = 'material-sheet-fab'
-
-    libraryDescription = 'Android library that implements the floating action button to sheet transition from Google\'s Material Design documentation.'
-
-    siteUrl = 'https://github.com/gowong/material-sheet-fab'
-    gitUrl = 'https://github.com/gowong/material-sheet-fab.git'
-
-    libraryVersion = '1.2.1'
-
-    developerId = 'gowong'
-    developerName = 'Gordon Wong'
-    developerEmail = 'gwong001@gmail.com'
-
-    licenseName = 'The MIT License (MIT)'
-    licenseUrl = 'http://opensource.org/licenses/mit-license.php'
-    allLicenses = ["MIT"]
-}
+//ext {
+//    bintrayRepo = 'maven'
+//    bintrayName = 'material-sheet-fab'
+//
+//    publishedGroupId = 'com.gordonwong'
+//    libraryName = 'material-sheet-fab'
+//    artifact = 'material-sheet-fab'
+//
+//    libraryDescription = 'Android library that implements the floating action button to sheet transition from Google\'s Material Design documentation.'
+//
+//    siteUrl = 'https://github.com/gowong/material-sheet-fab'
+//    gitUrl = 'https://github.com/gowong/material-sheet-fab.git'
+//
+//    libraryVersion = '1.2.1'
+//
+//    developerId = 'gowong'
+//    developerName = 'Gordon Wong'
+//    developerEmail = 'gwong001@gmail.com'
+//
+//    licenseName = 'The MIT License (MIT)'
+//    licenseUrl = 'http://opensource.org/licenses/mit-license.php'
+//    allLicenses = ["MIT"]
+//}
 
 android {
     compileSdkVersion 28
@@ -40,10 +40,6 @@ android {
 }
 
 dependencies {
-//    compile 'com.github.asyl.animation:arcanimator:1.0.0'
     implementation 'com.github.AndroidDeveloperLB:ArcAnimator:2'
 
 }
-
-apply from: 'bintray.gradle'
-//apply from: 'maven.gradle'
