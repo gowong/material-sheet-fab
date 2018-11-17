@@ -41,5 +41,4 @@ android {
 
 dependencies {
     implementation 'com.github.AndroidDeveloperLB:ArcAnimator:2'
-
 }
