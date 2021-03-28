@@ -5,6 +5,7 @@ package com.gordonwong.materialsheetfab.animations;
  *
  * Listener for animation events.
  */
+@SuppressWarnings("ALL")
 public abstract class AnimationListener {
 
 	/**

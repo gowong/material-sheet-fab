@@ -5,6 +5,7 @@ package com.gordonwong.materialsheetfab;
  *
  * Listener for material sheet FAB events.
  */
+@SuppressWarnings("EmptyMethod")
 public abstract class MaterialSheetFabEventListener {
 
 	/**

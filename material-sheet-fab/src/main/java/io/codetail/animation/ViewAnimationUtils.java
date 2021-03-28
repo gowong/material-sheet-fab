@@ -66,10 +66,8 @@ public class ViewAnimationUtils {
     private static Animator.AnimatorListener getRevealFinishListener(RevealAnimator target) {
         if (SDK_INT >= 18) {
             return new RevealAnimator.RevealFinishedJellyBeanMr2(target);
-        } else if (SDK_INT >= 14) {
-            return new RevealAnimator.RevealFinishedIceCreamSandwich(target);
         } else {
-            return new RevealAnimator.RevealFinishedGingerbread(target);
+            return new RevealAnimator.RevealFinishedIceCreamSandwich(target);
         }
     }
 
@@ -107,7 +105,7 @@ public class ViewAnimationUtils {
     @Deprecated
     public static void liftingFromBottom(View view, float baseRotation, int duration, int startDelay) {
         view.setRotationX(baseRotation);
-        view.setTranslationY(view.getHeight() / 3);
+        view.setTranslationY(view.getHeight() / 3f);
 
         view.animate()
                 .setInterpolator(new AccelerateDecelerateInterpolator())
@@ -129,7 +127,7 @@ public class ViewAnimationUtils {
     @Deprecated
     public static void liftingFromBottom(View view, float baseRotation, int duration) {
         view.setRotationX(baseRotation);
-        view.setTranslationY(view.getHeight() / 3);
+        view.setTranslationY(view.getHeight() / 3f);
 
         view.animate()
                 .setInterpolator(new AccelerateDecelerateInterpolator())

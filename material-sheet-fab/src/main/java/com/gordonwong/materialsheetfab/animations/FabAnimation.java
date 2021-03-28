@@ -15,8 +15,8 @@ import io.codetail.animation.arcanimator.Side;
  */
 public class FabAnimation {
 
-	protected View fab;
-	protected Interpolator interpolator;
+	protected final View fab;
+	protected final Interpolator interpolator;
 
 	public FabAnimation(View fab, Interpolator interpolator) {
 		this.fab = fab;

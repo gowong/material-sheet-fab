@@ -1,15 +1,16 @@
 package com.gordonwong.materialsheetfab.sample.models;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-
 import android.content.Context;
-import androidx.annotation.DrawableRes;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
 
 import com.gordonwong.materialsheetfab.sample.R;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+
+import androidx.annotation.DrawableRes;
 
 /**
  * Created by Gordon Wong on 7/18/2015.
@@ -96,7 +97,7 @@ public class Note {
 
 	public static Note randomNote(Context context) {
 		double rand = Math.random();
-		String title = "";
+		String title;
 		String note = "";
 		NoteInfo info = new NoteInfo("", 0);
 		int color = getRandomColor(context);
@@ -138,14 +139,14 @@ public class Note {
 
 	private static String getRandomWords() {
 		int rand = (int) (Math.random() * NUM_WORDS) + 1;
-		String words = "";
+		StringBuilder words = new StringBuilder();
 		for (int i = 0; i < rand; i++) {
-			words += WORDS;
+			words.append(WORDS);
 			if (i != rand - 1) {
-				words += " ";
+				words.append(" ");
 			}
 		}
-		return words;
+		return words.toString();
 	}
 
 	private static String getRandomListTitle() {
@@ -162,14 +163,14 @@ public class Note {
 		if (!TextUtils.isEmpty(delimiter)) {
 			delimiter += " ";
 		}
-		String listStr = "";
+		StringBuilder listStr = new StringBuilder();
 		for (int i = 0; i < list.length; i++) {
-			listStr += delimiter + list[i];
+			listStr.append(delimiter).append(list[i]);
 			if (i != list.length - 1) {
-				listStr += "\n";
+				listStr.append("\n");
 			}
 		}
-		return listStr;
+		return listStr.toString();
 	}
 
 	private static NoteInfo getRandomInfo(Context context) {
@@ -221,8 +222,8 @@ public class Note {
 
 	private static class NoteInfo {
 
-		private String info;
-		private int infoImage;
+		private final String info;
+		private final int infoImage;
 
 		private NoteInfo(String info, int infoImage) {
 			this.info = info;

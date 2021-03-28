@@ -7,7 +7,7 @@ import java.lang.ref.WeakReference;
 
 final class SupportAnimatorPreL extends SupportAnimator {
 
-    WeakReference<Animator> mAnimator;
+    final WeakReference<Animator> mAnimator;
 
     SupportAnimatorPreL(Animator animator, RevealAnimator target) {
         super(target);

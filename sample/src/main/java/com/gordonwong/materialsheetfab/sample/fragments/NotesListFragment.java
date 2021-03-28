@@ -33,7 +33,7 @@ public abstract class NotesListFragment extends Fragment {
 		View view = inflater.inflate(getLayoutResId(), container, false);
 
 		// Setup list
-		RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.notes_list);
+		RecyclerView recyclerView = view.findViewById(R.id.notes_list);
 		recyclerView.setLayoutManager(new StaggeredGridLayoutManager(getNumColumns(),
 				StaggeredGridLayoutManager.VERTICAL));
 		recyclerView.setAdapter(new NotesAdapter(getActivity(), getNumItems()));

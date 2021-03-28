@@ -10,7 +10,7 @@ import java.lang.ref.WeakReference;
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 final class SupportAnimatorLollipop extends SupportAnimator{
 
-    WeakReference<Animator> mAnimator;
+    final WeakReference<Animator> mAnimator;
 
     SupportAnimatorLollipop(Animator animator, RevealAnimator target) {
         super(target);

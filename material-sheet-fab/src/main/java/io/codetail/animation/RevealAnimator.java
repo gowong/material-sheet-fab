@@ -100,7 +100,7 @@ public interface RevealAnimator{
     }
 
     class RevealFinishedGingerbread extends SimpleAnimationListener {
-        WeakReference<RevealAnimator> mReference;
+        final WeakReference<RevealAnimator> mReference;
 
         RevealFinishedGingerbread(RevealAnimator target) {
             mReference = new WeakReference<>(target);
@@ -128,7 +128,7 @@ public interface RevealAnimator{
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     class RevealFinishedIceCreamSandwich extends RevealFinishedGingerbread {
         int mFeaturedLayerType;
-        int mLayerType;
+        final int mLayerType;
 
         RevealFinishedIceCreamSandwich(RevealAnimator target) {
             super(target);

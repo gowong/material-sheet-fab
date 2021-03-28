@@ -6,7 +6,7 @@ import java.lang.ref.WeakReference;
 
 public abstract class SupportAnimator {
 
-    WeakReference<RevealAnimator> mTarget;
+    final WeakReference<RevealAnimator> mTarget;
 
     public SupportAnimator(RevealAnimator target) {
         mTarget = new WeakReference<>(target);
@@ -19,9 +19,7 @@ public abstract class SupportAnimator {
     public abstract boolean isNativeAnimator();
 
     /**
-     * @return depends from {@link android.os.Build.VERSION} if sdk version
-     * {@link android.os.Build.VERSION_CODES#LOLLIPOP} and greater will return
-     * {@link android.animation.Animator} otherwise {@link com.nineoldandroids.animation.Animator}
+     * @return {@link android.animation.Animator}
      */
     public abstract Object get();
 
@@ -37,7 +35,6 @@ public abstract class SupportAnimator {
      * this is not the case). Also, if the animation will animate
      * properties of objects in the view hierarchy, then the calling thread should be the UI
      * thread for that view hierarchy.</p>
-     *
      */
     public abstract void start();
 
@@ -127,12 +124,12 @@ public abstract class SupportAnimator {
      * Experimental feature
      */
     public SupportAnimator reverse() {
-        if(isRunning()){
+        if (isRunning()) {
             return null;
         }
 
         RevealAnimator target = mTarget.get();
-        if(target != null){
+        if (target != null) {
             return target.startReverseAnimation();
         }
 

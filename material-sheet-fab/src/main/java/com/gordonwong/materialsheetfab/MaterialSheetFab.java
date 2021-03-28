@@ -17,7 +17,7 @@ import io.codetail.animation.arcanimator.Side;
 
 /**
  * Created by Gordon Wong on 7/9/2015.
- * 
+ *
  * Handles the interactions between the FAB and the material sheet that the FAB morphs into.
  */
 public class MaterialSheetFab<FAB extends View & AnimatedFab> {
@@ -48,12 +48,12 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 	private static final int FAB_ARC_DEGREES = 0;
 
 	// Views
-	protected FAB fab;
+	protected final FAB fab;
 
 	// Animations
-	protected FabAnimation fabAnimation;
-	protected MaterialSheetAnimation sheetAnimation;
-	protected OverlayAnimation overlayAnimation;
+	protected final FabAnimation fabAnimation;
+	protected final MaterialSheetAnimation sheetAnimation;
+	protected final OverlayAnimation overlayAnimation;
 
 	// State
 	protected int anchorX;
@@ -98,23 +98,15 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 		overlay.setVisibility(View.GONE);
 
 		// Set listener to morph FAB into sheet when clicked
-		fab.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View view) {
-				showSheet();
-			}
-		});
+		fab.setOnClickListener(view -> showSheet());
 
 		// Set listener to hide the sheet when touching the overlay
-		overlay.setOnTouchListener(new View.OnTouchListener() {
-			@Override
-			public boolean onTouch(View view, MotionEvent motionEvent) {
-				// Only hide if the sheet is visible and if this is the first touch event
-				if (isSheetVisible() && motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-					hideSheet();
-				}
-				return true;
+		overlay.setOnTouchListener((view, motionEvent) -> {
+			// Only hide if the sheet is visible and if this is the first touch event
+			if (isSheetVisible() && motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+				hideSheet();
 			}
+			return true;
 		});
 
 		// Set listener for when FAB view is laid out
@@ -270,16 +262,13 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 				FAB_SCALE_FACTOR, FAB_ANIM_DURATION, null);
 
 		// Show sheet after a delay
-		new Handler().postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				// Hide FAB
-				fab.setVisibility(View.INVISIBLE);
+		new Handler().postDelayed(() -> {
+			// Hide FAB
+			fab.setVisibility(View.INVISIBLE);
 
-				// Show sheet
-				sheetAnimation.morphFromFab(fab, SHEET_ANIM_DURATION,
-						SHOW_SHEET_COLOR_ANIM_DURATION, endListener);
-			}
+			// Show sheet
+			sheetAnimation.morphFromFab(fab, SHEET_ANIM_DURATION,
+					SHOW_SHEET_COLOR_ANIM_DURATION, endListener);
 		}, SHOW_SHEET_ANIM_DELAY);
 	}
 
@@ -288,17 +277,14 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 		sheetAnimation.morphIntoFab(fab, SHEET_ANIM_DURATION, HIDE_SHEET_COLOR_ANIM_DURATION, null);
 
 		// Show FAB after a delay
-		new Handler().postDelayed(new Runnable() {
-			@Override
-			public void run() {
-				// Hide sheet
-				sheetAnimation.setSheetVisibility(View.INVISIBLE);
+		new Handler().postDelayed(() -> {
+			// Hide sheet
+			sheetAnimation.setSheetVisibility(View.INVISIBLE);
 
-				// Show FAB
-				fabAnimation.morphFromSheet(anchorX, anchorY,
-						getFabArcSide(sheetAnimation.getRevealXDirection()), FAB_ARC_DEGREES,
-						-FAB_SCALE_FACTOR, FAB_ANIM_DURATION, endListener);
-			}
+			// Show FAB
+			fabAnimation.morphFromSheet(anchorX, anchorY,
+					getFabArcSide(sheetAnimation.getRevealXDirection()), FAB_ARC_DEGREES,
+					-FAB_SCALE_FACTOR, FAB_ANIM_DURATION, endListener);
 		}, MOVE_FAB_ANIM_DELAY);
 	}
 
@@ -309,9 +295,9 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 
 	protected void setFabAnchor(float translationX, float translationY) {
 		anchorX = Math
-				.round(fab.getX() + (fab.getWidth() / 2) + (translationX - fab.getTranslationX()));
+				.round(fab.getX() + (fab.getWidth() / 2f) + (translationX - fab.getTranslationX()));
 		anchorY = Math
-				.round(fab.getY() + (fab.getHeight() / 2) + (translationY - fab.getTranslationY()));
+				.round(fab.getY() + (fab.getHeight() / 2f) + (translationY - fab.getTranslationY()));
 	}
 
 	private Side getFabArcSide(RevealXDirection revealXDirection) {

@@ -2,22 +2,23 @@ package com.gordonwong.materialsheetfab.sample;
 
 import android.os.Build;
 import android.os.Bundle;
-import com.google.android.material.tabs.TabLayout;
-import androidx.core.view.GravityCompat;
-import androidx.viewpager.widget.ViewPager;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.material.tabs.TabLayout;
 import com.gordonwong.materialsheetfab.MaterialSheetFab;
 import com.gordonwong.materialsheetfab.MaterialSheetFabEventListener;
 import com.gordonwong.materialsheetfab.sample.adapters.MainPagerAdapter;
+
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.viewpager.widget.ViewPager;
 
 /**
  * Created by Gordon Wong on 7/17/2015.
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 	private ActionBarDrawerToggle drawerToggle;
 	private DrawerLayout drawerLayout;
-	private MaterialSheetFab materialSheetFab;
+	private MaterialSheetFab<Fab> materialSheetFab;
 	private int statusBarColor;
 
 	@Override
@@ -69,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 	 * Sets up the navigation drawer.
 	 */
 	private void setupDrawer() {
-		drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+		drawerLayout = findViewById(R.id.drawer_layout);
 		drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.opendrawer,
 				R.string.closedrawer);
 		drawerLayout.setDrawerListener(drawerToggle);
@@ -80,13 +81,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 	 */
 	private void setupTabs() {
 		// Setup view pager
-		ViewPager viewpager = (ViewPager) findViewById(R.id.viewpager);
+		ViewPager viewpager = findViewById(R.id.viewpager);
 		viewpager.setAdapter(new MainPagerAdapter(this, getSupportFragmentManager()));
 		viewpager.setOffscreenPageLimit(MainPagerAdapter.NUM_ITEMS);
 		updatePage(viewpager.getCurrentItem());
 
 		// Setup tab layout
-		TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+		TabLayout tabLayout = findViewById(R.id.tabs);
 		tabLayout.setupWithViewPager(viewpager);
 		viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 			@Override
@@ -109,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 	 */
 	private void setupFab() {
 
-		Fab fab = (Fab) findViewById(R.id.fab);
+		Fab fab = findViewById(R.id.fab);
 		View sheetView = findViewById(R.id.fab_sheet);
 		View overlay = findViewById(R.id.overlay);
 		int sheetColor = getResources().getColor(R.color.background_card);
