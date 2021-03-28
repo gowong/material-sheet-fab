@@ -3,6 +3,10 @@ A bit updated fork of this:
 
 https://github.com/gowong/material-sheet-fab
 
+Usage in gradle file:
+
+https://jitpack.io/#AndroidDeveloperLB/material-sheet-fab
+
 ----
 Original docs from it:
 
