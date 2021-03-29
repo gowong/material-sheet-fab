@@ -1,7 +1,5 @@
 package com.gordonwong.materialsheetfab.animations;
 
-import java.lang.reflect.Method;
-
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ArgbEvaluator;
@@ -15,6 +13,8 @@ import android.view.animation.Interpolator;
 import com.gordonwong.materialsheetfab.MaterialSheetFab.RevealXDirection;
 import com.gordonwong.materialsheetfab.MaterialSheetFab.RevealYDirection;
 
+import java.lang.reflect.Method;
+
 import io.codetail.animation.SupportAnimator;
 
 /**
@@ -27,14 +27,14 @@ public class MaterialSheetAnimation {
 	private static final String SUPPORT_CARDVIEW_CLASSNAME = "android.support.v7.widget.CardView";
 	private static final int SHEET_REVEAL_OFFSET_Y = 5;
 
-	private View sheet;
-	private int sheetColor;
-	private int fabColor;
-	private Interpolator interpolator;
+	private final View sheet;
+	private final int sheetColor;
+	private final int fabColor;
+	private final Interpolator interpolator;
 	private RevealXDirection revealXDirection;
 	private RevealYDirection revealYDirection;
 	private Method setCardBackgroundColor;
-	private boolean isSupportCardView;
+	private final boolean isSupportCardView;
 
 	public MaterialSheetAnimation(View sheet, int sheetColor, int fabColor,
 			Interpolator interpolator) {
@@ -49,7 +49,6 @@ public class MaterialSheetAnimation {
 		// Get setCardBackgroundColor() method
 		if (isSupportCardView) {
 			try {
-				// noinspection unchecked
 				setCardBackgroundColor = sheet.getClass()
 						.getDeclaredMethod("setCardBackgroundColor", int.class);
 			} catch (Exception e) {
@@ -60,7 +59,7 @@ public class MaterialSheetAnimation {
 
 	/**
 	 * Aligns the sheet's position with the FAB.
-	 * 
+	 *
 	 * @param fab Floating action button
 	 */
 	public void alignSheetWithFab(View fab) {
@@ -257,31 +256,28 @@ public class MaterialSheetAnimation {
 				}
 			}
 		});
-		anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-			@Override
-			public void onAnimationUpdate(ValueAnimator animator) {
-				// Update background color
-				Integer color = (Integer) animator.getAnimatedValue();
+		anim.addUpdateListener(animator -> {
+			// Update background color
+			Integer color = (Integer) animator.getAnimatedValue();
 
-				// Use CardView.setCardBackgroundColor() to avoid crashes on Android < 5.0 and to
-				// properly set the card's background color without removing the card's other styles
-				// See https://github.com/gowong/material-sheet-fab/pull/2 and
-				// https://code.google.com/p/android/issues/detail?id=77843
-				if (isSupportCardView) {
-					// Use setCardBackground() method if it is available
-					if (setCardBackgroundColor != null) {
-						try {
-							setCardBackgroundColor.invoke(sheet, color);
-						} catch (Exception e) {
-							// Ignore exceptions since there's no other way set a support CardView's
-							// background color
-						}
+			// Use CardView.setCardBackgroundColor() to avoid crashes on Android < 5.0 and to
+			// properly set the card's background color without removing the card's other styles
+			// See https://github.com/gowong/material-sheet-fab/pull/2 and
+			// https://code.google.com/p/android/issues/detail?id=77843
+			if (isSupportCardView) {
+				// Use setCardBackground() method if it is available
+				if (setCardBackgroundColor != null) {
+					try {
+						setCardBackgroundColor.invoke(sheet, color);
+					} catch (Exception e) {
+						// Ignore exceptions since there's no other way set a support CardView's
+						// background color
 					}
 				}
-				// Set background color for all other views
-				else {
-					view.setBackgroundColor(color);
-				}
+			}
+			// Set background color for all other views
+			else {
+				view.setBackgroundColor(color);
 			}
 		});
 		// Start animation
@@ -321,7 +317,7 @@ public class MaterialSheetAnimation {
 	}
 
 	protected float getFabRevealRadius(View fab) {
-		return Math.max(fab.getWidth(), fab.getHeight()) / 2;
+		return Math.max(fab.getWidth(), fab.getHeight()) / 2f;
 	}
 
 	public RevealXDirection getRevealXDirection() {

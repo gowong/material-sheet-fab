@@ -1,14 +1,13 @@
 package io.codetail.animation;
 
+import android.animation.Animator;
 import android.view.animation.Interpolator;
-
-import com.nineoldandroids.animation.Animator;
 
 import java.lang.ref.WeakReference;
 
 final class SupportAnimatorPreL extends SupportAnimator {
 
-    WeakReference<Animator> mAnimator;
+    final WeakReference<Animator> mAnimator;
 
     SupportAnimatorPreL(Animator animator, RevealAnimator target) {
         super(target);

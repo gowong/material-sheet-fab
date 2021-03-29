@@ -14,7 +14,7 @@ import io.codetail.animation.ViewAnimationUtils;
 
 public class RevealLinearLayout extends LinearLayout implements RevealAnimator{
 
-    private Path mRevealPath;
+    private final Path mRevealPath;
     private final Rect mTargetBounds = new Rect();
     private RevealInfo mRevealInfo;
     private boolean mRunning;

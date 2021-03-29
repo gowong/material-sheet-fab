@@ -1,14 +1,16 @@
 package com.gordonwong.materialsheetfab.sample.adapters;
 
 import android.content.Context;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 
 import com.gordonwong.materialsheetfab.sample.R;
 import com.gordonwong.materialsheetfab.sample.fragments.AllFragment;
 import com.gordonwong.materialsheetfab.sample.fragments.FavoritesFragment;
 import com.gordonwong.materialsheetfab.sample.fragments.SharedFragment;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 
 /**
  * Created by Gordon Wong on 7/17/2015.
@@ -22,13 +24,14 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
 	public static final int SHARED_POS = 1;
 	public static final int FAVORITES_POS = 2;
 
-	private Context context;
+	private final Context context;
 
 	public MainPagerAdapter(Context context, FragmentManager fm) {
 		super(fm);
 		this.context = context;
 	}
 
+	@NonNull
 	@Override
 	public Fragment getItem(int position) {
 		switch (position) {

@@ -1,10 +1,9 @@
 package com.gordonwong.materialsheetfab.animations;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.view.View;
 import android.view.animation.Interpolator;
-
-import com.nineoldandroids.animation.Animator;
-import com.nineoldandroids.animation.AnimatorListenerAdapter;
 
 import io.codetail.animation.arcanimator.ArcAnimator;
 import io.codetail.animation.arcanimator.Side;
@@ -16,8 +15,8 @@ import io.codetail.animation.arcanimator.Side;
  */
 public class FabAnimation {
 
-	protected View fab;
-	protected Interpolator interpolator;
+	protected final View fab;
+	protected final Interpolator interpolator;
 
 	public FabAnimation(View fab, Interpolator interpolator) {
 		this.fab = fab;

@@ -1,11 +1,11 @@
 package com.gordonwong.materialsheetfab.sample.fragments;
 
 import android.os.Bundle;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
+import androidx.annotation.LayoutRes;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +33,7 @@ public abstract class NotesListFragment extends Fragment {
 		View view = inflater.inflate(getLayoutResId(), container, false);
 
 		// Setup list
-		RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.notes_list);
+		RecyclerView recyclerView = view.findViewById(R.id.notes_list);
 		recyclerView.setLayoutManager(new StaggeredGridLayoutManager(getNumColumns(),
 				StaggeredGridLayoutManager.VERTICAL));
 		recyclerView.setAdapter(new NotesAdapter(getActivity(), getNumItems()));

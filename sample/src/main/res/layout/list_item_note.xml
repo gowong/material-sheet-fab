@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
+<androidx.cardview.widget.CardView
     style="@style/Widget.MaterialSheetFab.Note"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
@@ -40,4 +40,4 @@
         </LinearLayout>
     </RelativeLayout>
 
-</android.support.v7.widget.CardView>
+</androidx.cardview.widget.CardView>

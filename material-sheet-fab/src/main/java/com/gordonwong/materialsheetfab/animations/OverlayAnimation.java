@@ -12,8 +12,8 @@ import android.view.animation.Interpolator;
  */
 public class OverlayAnimation {
 
-	protected View overlay;
-	protected Interpolator interpolator;
+	protected final View overlay;
+	protected final Interpolator interpolator;
 
 	public OverlayAnimation(View overlay, Interpolator interpolator) {
 		this.overlay = overlay;
@@ -22,7 +22,7 @@ public class OverlayAnimation {
 
 	/**
 	 * Shows the overlay.
-	 * 
+	 *
 	 * @param duration Duration of the animation in milliseconds. Use 0 for no animation.
 	 * @param listener Listener for animation events.
 	 */
@@ -48,7 +48,7 @@ public class OverlayAnimation {
 
 	/**
 	 * Hides the overlay.
-	 * 
+	 *
 	 * @param duration Duration of the animation in milliseconds. Use 0 for no animation.
 	 * @param listener Listener for animation events.
 	 */

@@ -1,8 +1,6 @@
 package com.gordonwong.materialsheetfab.sample.adapters;
 
 import android.content.Context;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +12,10 @@ import android.widget.TextView;
 import com.gordonwong.materialsheetfab.sample.R;
 import com.gordonwong.materialsheetfab.sample.models.Note;
 
+import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
+
 /**
  * Created by Gordon Wong on 7/18/2015.
  *
@@ -21,12 +23,13 @@ import com.gordonwong.materialsheetfab.sample.models.Note;
  */
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> {
 
-	private Note[] notes;
+	private final Note[] notes;
 
 	public NotesAdapter(Context context, int numNotes) {
 		notes = generateNotes(context, numNotes);
 	}
 
+	@NonNull
 	@Override
 	public NotesAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 		View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_note, parent,
@@ -84,19 +87,19 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
 
 	public static class ViewHolder extends RecyclerView.ViewHolder {
 
-		public TextView titleTextView;
-		public TextView noteTextView;
-		public LinearLayout infoLayout;
-		public TextView infoTextView;
-		public ImageView infoImageView;
+		public final TextView titleTextView;
+		public final TextView noteTextView;
+		public final LinearLayout infoLayout;
+		public final TextView infoTextView;
+		public final ImageView infoImageView;
 
 		public ViewHolder(View itemView) {
 			super(itemView);
-			titleTextView = (TextView) itemView.findViewById(R.id.note_title);
-			noteTextView = (TextView) itemView.findViewById(R.id.note_text);
-			infoLayout = (LinearLayout) itemView.findViewById(R.id.note_info_layout);
-			infoTextView = (TextView) itemView.findViewById(R.id.note_info);
-			infoImageView = (ImageView) itemView.findViewById(R.id.note_info_image);
+			titleTextView = itemView.findViewById(R.id.note_title);
+			noteTextView = itemView.findViewById(R.id.note_text);
+			infoLayout = itemView.findViewById(R.id.note_info_layout);
+			infoTextView = itemView.findViewById(R.id.note_info);
+			infoImageView = itemView.findViewById(R.id.note_info_image);
 		}
 	}
 
