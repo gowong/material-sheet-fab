@@ -15,9 +15,9 @@ ext {
 
     libraryVersion = '1.2.1'
 
-    developerId = 'gowong'
-    developerName = 'Gordon Wong'
-    developerEmail = 'gwong001@gmail.com'
+    developerId = ''
+    developerName = ''
+    developerEmail = ''
 
     licenseName = 'The MIT License (MIT)'
     licenseUrl = 'http://opensource.org/licenses/mit-license.php'
