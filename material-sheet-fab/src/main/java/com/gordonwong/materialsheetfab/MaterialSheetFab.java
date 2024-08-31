@@ -270,7 +270,7 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 				FAB_SCALE_FACTOR, FAB_ANIM_DURATION, null);
 
 		// Show sheet after a delay
-		new Handler().postDelayed(new Runnable() {
+		new Handler(Looper.myLooper()).postDelayed(new Runnable() {
 			@Override
 			public void run() {
 				// Hide FAB
@@ -288,7 +288,7 @@ public class MaterialSheetFab<FAB extends View & AnimatedFab> {
 		sheetAnimation.morphIntoFab(fab, SHEET_ANIM_DURATION, HIDE_SHEET_COLOR_ANIM_DURATION, null);
 
 		// Show FAB after a delay
-		new Handler().postDelayed(new Runnable() {
+		new Handler(Looper.myLooper()).postDelayed(new Runnable() {
 			@Override
 			public void run() {
 				// Hide sheet
